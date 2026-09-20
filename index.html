@@ -157,3 +157,149 @@ function updateProgress(){let a=[...document.querySelectorAll('.dircheck')],done
 function resetChecklist(){if(confirm('¿Quieres desmarcar todas las tareas y borrar las observaciones?')){document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);let n=document.getElementById('dirNotes');if(n)n.value='';saveChecklist()}}
 window.addEventListener('DOMContentLoaded',()=>{loadChecklist();if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{})});
 </script></body></html>
+MANDALA V2.8 ADMIN DIRECTORES - PEGAR AL FINAL DE index.html -->
+<style>
+.m28-panel{background:#fff;border:1px solid #ded5c7;border-radius:18px;padding:18px;margin:12px 0}
+.m28-row{margin:14px 0}.m28-row label{display:block;font-weight:750;margin-bottom:7px}
+.m28-row select,.m28-row input{width:100%;font:inherit;padding:14px;border:1px solid #ded5c7;border-radius:12px;background:#fff}
+.m28-primary,.m28-secondary{width:100%;font:inherit;font-weight:750;border-radius:14px;padding:14px;margin-top:10px}
+.m28-primary{border:0;background:#7b6b52;color:#fff}.m28-secondary{border:1px solid #ded5c7;background:#fff;color:#202020}
+.m28-badge{display:inline-block;padding:5px 9px;border-radius:20px;background:#eee7dc;font-size:12px;margin:3px 3px 3px 0}
+.m28-list{background:#fff;border:1px solid #ded5c7;border-radius:16px;padding:14px;margin:10px 0}
+.m28-muted{color:#777168;font-size:14px;line-height:1.45}
+.m28-ok{font-weight:750}
+</style>
+
+<section class="screen" id="directorAccess">
+<header><button class="back" onclick="show('director')">â€¹</button><div><b>Inicio de checklist</b><small>IdentificaciÃ³n del turno</small></div></header>
+<main>
+<div class="m28-panel">
+<div class="m28-row"><label>Restaurante</label>
+<select id="m28Restaurant" onchange="m28SyncDirector()">
+<option value="">Selecciona restaurante</option>
+<option>Farini Fustera</option>
+<option>Mandala Port</option>
+<option>Rull</option>
+<option>Mandala Fustera</option>
+<option>Farini Benissa</option>
+</select></div>
+<div class="m28-row"><label>Director</label><select id="m28Director"><option value="">Selecciona primero el restaurante</option></select></div>
+<button class="m28-primary" onclick="m28Start()">COMENZAR CHECKLIST</button>
+</div>
+<div class="m28-panel">
+<button class="m28-secondary" onclick="show('m28Access')">GERENCIA / SUPERVISIÃ“N</button>
+</div>
+</main></section>
+
+<section class="screen" id="m28Access">
+<header><button class="back" onclick="show('directorAccess')">â€¹</button><div><b>Gerencia / SupervisiÃ³n</b><small>Acceso restringido</small></div></header>
+<main><div class="m28-panel">
+<div class="m28-row"><label>Usuario</label>
+<select id="m28User"><option>Gustavo Vinazza</option><option>Felipe Ezquerdo</option><option>Vicent Gimenez</option></select></div>
+<div class="m28-row"><label>ContraseÃ±a</label><input id="m28Pin" type="password" inputmode="numeric" placeholder="ContraseÃ±a"></div>
+<button class="m28-primary" onclick="m28Login()">ENTRAR</button>
+</div></main></section>
+
+<section class="screen" id="m28Panel">
+<header><button class="back" onclick="show('directorAccess')">â€¹</button><div><b>Panel Mandala</b><small id="m28Role"></small></div></header>
+<main>
+<div class="m28-panel"><b>Restaurantes</b><div style="margin-top:10px">
+<span class="m28-badge">Farini Fustera</span><span class="m28-badge">Mandala Port</span><span class="m28-badge">Rull</span><span class="m28-badge">Mandala Fustera</span><span class="m28-badge">Farini Benissa</span>
+</div></div>
+<div id="m28History"></div>
+<div id="m28Admin" class="m28-panel" style="display:none">
+<b>AdministraciÃ³n</b>
+<p class="m28-muted">Gerencia puede modificar la asignaciÃ³n de directores en este dispositivo.</p>
+<div id="m28Assignments"></div>
+<button class="m28-secondary" onclick="m28ChangePin()">CAMBIAR CONTRASEÃ‘A DE GERENCIA</button>
+</div>
+<p class="m28-muted">Esta versiÃ³n guarda los datos en el dispositivo. La consulta en tiempo real entre distintos mÃ³viles/iPads requiere una base de datos online; GitHub Pages por sÃ­ solo no sincroniza datos entre dispositivos.</p>
+</main></section>
+
+<script>
+const M28_DEFAULTS={
+"Farini Fustera":"Stefano Burci",
+"Mandala Port":"Ezequiel Robuschi",
+"Rull":"Alexander Alzate",
+"Mandala Fustera":"Pedro RodrÃ­guez",
+"Farini Benissa":"Eduardo Ivars"
+};
+function m28Map(){try{return {...M28_DEFAULTS,...JSON.parse(localStorage.getItem('m28_assignments')||'{}')}}catch(e){return {...M28_DEFAULTS}}}
+function m28SyncDirector(){
+ const r=document.getElementById('m28Restaurant').value,d=document.getElementById('m28Director'),m=m28Map();
+ d.innerHTML=r?'<option>'+m[r]+'</option>':'<option value="">Selecciona primero el restaurante</option>';
+}
+function m28Key(){return 'm28_'+(sessionStorage.getItem('m28_restaurant')||'general').replace(/\s+/g,'_')+'_'}
+function m28Start(){
+ const r=document.getElementById('m28Restaurant').value,d=document.getElementById('m28Director').value;
+ if(!r||!d){alert('Selecciona el restaurante y el director.');return}
+ sessionStorage.setItem('m28_restaurant',r);sessionStorage.setItem('m28_director',d);
+ const sub=document.querySelector('#directorChecklist header small'); if(sub)sub.textContent=r+' Â· '+d;
+ m28Load();show('directorChecklist');
+}
+function m28Save(){
+ const k=m28Key();
+ document.querySelectorAll('.dircheck').forEach(c=>localStorage.setItem(k+c.dataset.k,c.checked?'1':'0'));
+ const n=document.getElementById('dirNotes');if(n)localStorage.setItem(k+'notes',n.value||'');
+ updateProgress();
+}
+function m28Load(){
+ const k=m28Key();
+ document.querySelectorAll('.dircheck').forEach(c=>{c.checked=localStorage.getItem(k+c.dataset.k)==='1';c.onchange=m28Save});
+ const n=document.getElementById('dirNotes');if(n){n.value=localStorage.getItem(k+'notes')||'';n.oninput=m28Save}
+ updateProgress();m28AddFinalize();
+}
+function m28AddFinalize(){
+ if(document.getElementById('m28Finalize'))return;
+ const reset=document.querySelector('#directorChecklist .reset');if(!reset)return;
+ const b=document.createElement('button');b.id='m28Finalize';b.className='m28-primary';b.textContent='FINALIZAR CHECKLIST';b.onclick=m28Finalize;
+ reset.parentNode.insertBefore(b,reset);
+}
+function m28Finalize(){
+ const a=[...document.querySelectorAll('.dircheck')];
+ if(!a.length||a.some(x=>!x.checked)){alert('Para finalizar la checklist deben estar completadas las 32 tareas.');return}
+ const r=sessionStorage.getItem('m28_restaurant'),d=sessionStorage.getItem('m28_director');
+ if(!confirm('Â¿Finalizar la checklist de '+r+'?'))return;
+ const notes=document.getElementById('dirNotes')?.value||'';
+ let h=[];try{h=JSON.parse(localStorage.getItem('m28_history')||'[]')}catch(e){}
+ h.unshift({restaurant:r,director:d,time:new Date().toLocaleString('es-ES'),notes:notes,status:'Finalizada'});
+ localStorage.setItem('m28_history',JSON.stringify(h.slice(0,100)));
+ alert('Checklist finalizada y registrada en este dispositivo.');
+ show('directorAccess');
+}
+function m28Login(){
+ const u=document.getElementById('m28User').value,p=document.getElementById('m28Pin').value;
+ const isAdmin=u==='Felipe Ezquerdo'||u==='Vicent Gimenez';
+ const pin=isAdmin?(localStorage.getItem('m28_admin_pin')||'2026'):'2026';
+ if(p!==pin){alert('ContraseÃ±a incorrecta.');return}
+ document.getElementById('m28Role').textContent=u+(isAdmin?' Â· AdministraciÃ³n':' Â· SupervisiÃ³n');
+ document.getElementById('m28Admin').style.display=isAdmin?'block':'none';
+ m28RenderHistory();if(isAdmin)m28RenderAssignments();show('m28Panel');
+}
+function m28RenderHistory(){
+ let h=[];try{h=JSON.parse(localStorage.getItem('m28_history')||'[]')}catch(e){}
+ const box=document.getElementById('m28History');
+ box.innerHTML='<div class="m28-panel"><b>Checklists finalizadas</b><p class="m28-muted">'+(h.length?'Registros guardados en este dispositivo.':'TodavÃ­a no hay checklists finalizadas en este dispositivo.')+'</p></div>';
+ h.forEach(x=>{const d=document.createElement('div');d.className='m28-list';d.innerHTML='<div class="m28-ok"></div><div class="m28-muted"></div>';d.children[0].textContent=x.restaurant+' Â· '+x.director;d.children[1].textContent=x.time+' Â· '+x.status+(x.notes?' Â· Observaciones: '+x.notes:'');box.appendChild(d)});
+}
+function m28RenderAssignments(){
+ const m=m28Map(),box=document.getElementById('m28Assignments');box.innerHTML='';
+ Object.keys(M28_DEFAULTS).forEach(r=>{const row=document.createElement('div');row.className='m28-row';const lab=document.createElement('label');lab.textContent=r;const inp=document.createElement('input');inp.value=m[r];inp.dataset.r=r;row.append(lab,inp);box.appendChild(row)});
+ const b=document.createElement('button');b.className='m28-secondary';b.textContent='GUARDAR DIRECTORES';b.onclick=()=>{let o={};box.querySelectorAll('input').forEach(i=>o[i.dataset.r]=i.value.trim()||M28_DEFAULTS[i.dataset.r]);localStorage.setItem('m28_assignments',JSON.stringify(o));alert('Directores actualizados en este dispositivo.');m28SyncDirector()};box.appendChild(b);
+}
+function m28ChangePin(){
+ const p=prompt('Nueva contraseÃ±a de Gerencia:');if(p&&p.trim()){localStorage.setItem('m28_admin_pin',p.trim());alert('ContraseÃ±a actualizada en este dispositivo.')}
+}
+(function(){
+ const btn=[...document.querySelectorAll('#director .hubcard')].find(b=>b.textContent.includes('CHECKLIST DEL DIRECTOR'));
+ if(btn)btn.onclick=()=>show('directorAccess');
+ const oldSave=window.saveChecklist;window.saveChecklist=m28Save;
+ const oldLoad=window.loadChecklist;window.loadChecklist=function(){};
+ const oldReset=window.resetChecklist;window.resetChecklist=function(){
+   if(confirm('Â¿Quieres desmarcar todas las tareas y borrar las observaciones de este restaurante?')){
+     document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);
+     const n=document.getElementById('dirNotes');if(n)n.value='';m28Save();
+   }
+ };
+})();
+</script>
