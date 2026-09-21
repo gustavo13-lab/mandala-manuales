@@ -1334,3 +1334,56 @@ window.addEventListener('DOMContentLoaded',function(){
   }
 });
 </script>
+<script>
+function show(id){
+  document.querySelectorAll('.screen').forEach(function(screen){
+    screen.classList.remove('active');
+  });
+
+  const target = document.getElementById(id);
+  if(target){
+    target.classList.add('active');
+    window.scrollTo(0,0);
+  }
+}
+
+function goHome(){
+  show('home');
+}
+
+function allOpen(id, open){
+  const section = document.getElementById(id);
+  if(!section) return;
+
+  section.querySelectorAll('details').forEach(function(item){
+    item.open = open;
+  });
+}
+
+function updateProgress(){
+  const checks = document.querySelectorAll('.dircheck');
+  let done = 0;
+
+  checks.forEach(function(check){
+    if(check.checked) done++;
+  });
+
+  const text = document.getElementById('progText');
+  const bar = document.getElementById('progBar');
+
+  if(text){
+    text.textContent =
+      done + ' de ' + checks.length + ' tareas completadas';
+  }
+
+  if(bar){
+    bar.style.width =
+      checks.length
+        ? ((done / checks.length) * 100) + '%'
+        : '0%';
+  }
+}
+</script>
+
+</body>
+</html>
