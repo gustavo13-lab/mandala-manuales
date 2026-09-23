@@ -389,3 +389,61 @@ m28Finalize=async function(){let a=[...document.querySelectorAll('.dircheck')];i
 rangoFinalize=async function(){let a=[...document.querySelectorAll('.rangocheck')];if(a.some(x=>!x.checked))return alert('Para finalizar la checklist deben estar completadas las 30 tareas.');let r=sessionStorage.getItem('rango_restaurant'),n=sessionStorage.getItem('rango_name');if(confirm('¿Finalizar la checklist de '+n+' en '+r+'?')&&await finish('rango','.rangocheck','rangoNotes',r,n)){alert('Checklist finalizada y sincronizada.');show('rangoAccess')}};
 const oldLogin=m28Login;m28Login=function(){oldLogin();if(document.getElementById('m28Panel').classList.contains('active')){live();clearInterval(cloudTimer);cloudTimer=setInterval(live,3000)}};
 </script>
+
+
+<script>
+/* Seguridad de sesión de Gerencia/Supervisión:
+   al salir del panel se limpian usuario, contraseña y datos de identificación del turno. */
+function m28ClearAccess(){
+  const u=document.getElementById('m28User');
+  const p=document.getElementById('m28Pin');
+  if(u)u.selectedIndex=0;
+  if(p)p.value='';
+}
+function mandalaClearTurnIdentity(){
+  sessionStorage.removeItem('m28_restaurant');
+  sessionStorage.removeItem('m28_director');
+  sessionStorage.removeItem('rango_restaurant');
+  sessionStorage.removeItem('rango_name');
+  const rr=document.getElementById('m28Restaurant');
+  const rd=document.getElementById('m28Director');
+  const jr=document.getElementById('rangoRestaurant');
+  const jn=document.getElementById('rangoName');
+  if(rr)rr.value='';
+  if(rd)rd.innerHTML='<option value="">Selecciona primero el restaurante</option>';
+  if(jr)jr.value='';
+  if(jn)jn.value='';
+}
+const _secureShow=show;
+show=function(id){
+  const leavingPanel=document.getElementById('m28Panel')?.classList.contains('active') && id!=='m28Panel';
+  _secureShow(id);
+  if(leavingPanel){m28ClearAccess();mandalaClearTurnIdentity();}
+  if(id==='m28Access')m28ClearAccess();
+};
+const _secureDirReset=resetChecklist;
+resetChecklist=function(){
+  _secureDirReset();
+  mandalaClearTurnIdentity();
+};
+const _secureRangoReset=rangoReset;
+rangoReset=function(){
+  _secureRangoReset();
+  mandalaClearTurnIdentity();
+};
+</script>
+
+
+<script>
+(function(){
+ function creds(){let u=document.getElementById('m28User'),p=document.getElementById('m28Pin');if(u){u.value='';u.selectedIndex=-1}if(p)p.value=''}
+ function dirid(){sessionStorage.removeItem('m28_restaurant');sessionStorage.removeItem('m28_director');let r=document.getElementById('m28Restaurant'),d=document.getElementById('m28Director');if(r)r.value='';if(d)d.innerHTML='<option value="">Selecciona primero el restaurante</option>'}
+ function ranid(){sessionStorage.removeItem('rango_restaurant');sessionStorage.removeItem('rango_name');let r=document.getElementById('rangoRestaurant'),n=document.getElementById('rangoName');if(r)r.value='';if(n)n.value=''}
+ let op=window.m28OpenAccess;window.m28OpenAccess=function(back){creds();op(back);setTimeout(creds,0)};
+ let lg=window.m28Login;window.m28Login=function(){let u=document.getElementById('m28User')?.value||'';lg();if(document.getElementById('m28Panel')?.classList.contains('active'))creds();else{let p=document.getElementById('m28Pin');if(p)p.value=''}};
+ window.resetChecklist=function(){if(confirm('¿Quieres desmarcar todas las tareas y borrar las observaciones de este restaurante?')){document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);let n=document.getElementById('dirNotes');if(n)n.value='';m28Save();dirid();show('directorAccess')}};
+ window.rangoReset=function(){if(confirm('¿Quieres desmarcar todas las tareas y borrar las observaciones de este jefe de rango?')){document.querySelectorAll('.rangocheck').forEach(c=>c.checked=false);let n=document.getElementById('rangoNotes');if(n)n.value='';rangoSave();ranid();show('rangoAccess')}};
+ let sh=window.show;window.show=function(id){let leaving=document.getElementById('m28Panel')?.classList.contains('active')&&id!=='m28Panel';sh(id);if(leaving)creds();if(id==='m28Access')creds()};
+ addEventListener('pageshow',creds);addEventListener('DOMContentLoaded',creds);
+})();
+</script>
