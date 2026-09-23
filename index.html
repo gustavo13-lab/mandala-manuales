@@ -447,3 +447,100 @@ rangoReset=function(){
  addEventListener('pageshow',creds);addEventListener('DOMContentLoaded',creds);
 })();
 </script>
+
+
+<script>
+/* V8.2: Reinicio definitivo - elimina la checklist activa de Supabase antes de limpiar la pantalla */
+async function cloudDeleteActive(tipo,rest,responsable){
+  try{
+    let ids = await sb(
+      'checklists?select=id&tipo=eq.'+encodeURIComponent(tipo)+
+      '&restaurante=eq.'+encodeURIComponent(rest)+
+      '&responsable=eq.'+encodeURIComponent(responsable)+
+      '&estado=eq.activa'
+    );
+
+    if(ids && ids.length){
+      for(const row of ids){
+        await sb('checklists?id=eq.'+encodeURIComponent(row.id),{
+          method:'DELETE',
+          headers:{Prefer:'return=minimal'}
+        });
+      }
+    }
+
+    cloudIds[tipo]=null;
+    return true;
+  }catch(e){
+    console.error('Error al borrar checklist activa:',e);
+    alert('No se ha podido borrar la checklist de Gerencia / Supervisión. No se reiniciará para evitar dejar un registro activo.');
+    return false;
+  }
+}
+
+window.resetChecklist=async function(){
+  if(!confirm('¿Quieres reiniciar esta checklist? Se borrará también de Gerencia / Supervisión.')) return;
+
+  const r=sessionStorage.getItem('m28_restaurant')||'';
+  const n=sessionStorage.getItem('m28_director')||'';
+
+  if(r && n){
+    const ok=await cloudDeleteActive('director',r,n);
+    if(!ok) return;
+  }
+
+  document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);
+  const notes=document.getElementById('dirNotes');
+  if(notes) notes.value='';
+
+  if(r){
+    const k='m28_'+r.replace(/\s+/g,'_')+'_';
+    document.querySelectorAll('.dircheck').forEach(c=>localStorage.removeItem(k+c.dataset.k));
+    localStorage.removeItem(k+'notes');
+  }
+
+  sessionStorage.removeItem('m28_restaurant');
+  sessionStorage.removeItem('m28_director');
+
+  const rr=document.getElementById('m28Restaurant');
+  const dd=document.getElementById('m28Director');
+  if(rr) rr.value='';
+  if(dd) dd.innerHTML='<option value="">Selecciona primero el restaurante</option>';
+
+  updateProgress();
+  show('directorAccess');
+};
+
+window.rangoReset=async function(){
+  if(!confirm('¿Quieres reiniciar esta checklist? Se borrará también de Gerencia / Supervisión.')) return;
+
+  const r=sessionStorage.getItem('rango_restaurant')||'';
+  const n=sessionStorage.getItem('rango_name')||'';
+
+  if(r && n){
+    const ok=await cloudDeleteActive('rango',r,n);
+    if(!ok) return;
+  }
+
+  document.querySelectorAll('.rangocheck').forEach(c=>c.checked=false);
+  const notes=document.getElementById('rangoNotes');
+  if(notes) notes.value='';
+
+  if(r && n){
+    const k='mandala_rango_'+r.replace(/\s+/g,'_')+'_'+n.trim().replace(/\s+/g,'_')+'_';
+    document.querySelectorAll('.rangocheck').forEach(c=>localStorage.removeItem(k+c.dataset.k));
+    localStorage.removeItem(k+'notes');
+  }
+
+  sessionStorage.removeItem('rango_restaurant');
+  sessionStorage.removeItem('rango_name');
+
+  const rr=document.getElementById('rangoRestaurant');
+  const nn=document.getElementById('rangoName');
+  if(rr) rr.value='';
+  if(nn) nn.value='';
+
+  rangoProgress();
+  show('rangoAccess');
+};
+</script>
