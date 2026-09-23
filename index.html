@@ -198,6 +198,12 @@ window.addEventListener('DOMContentLoaded',()=>{loadChecklist();if('serviceWorke
 .m28-list{background:#fff;border:1px solid #ded5c7;border-radius:16px;padding:14px;margin:10px 0}
 .m28-muted{color:#777168;font-size:14px;line-height:1.45}
 .m28-ok{font-weight:750}
+.m28-dashboard{background:#fff;border:1px solid #ded5c7;border-radius:18px;padding:18px;margin:12px 0}
+.m28-dashboard-title{font-size:20px;font-weight:800;margin-bottom:4px}
+.m28-rest-card{padding:14px 0;border-bottom:1px solid #eee7dc}.m28-rest-card:last-child{border-bottom:0;padding-bottom:2px}
+.m28-rest-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}.m28-rest-name{font-weight:800;font-size:16px}.m28-rest-pct{font-weight:800;font-size:18px}
+.m28-rest-track{height:12px;background:#eee7dc;border-radius:999px;overflow:hidden}.m28-rest-fill{height:100%;background:#7b6b52;border-radius:999px;transition:width .35s ease}
+.m28-rest-detail{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:7px;color:#777168;font-size:12px}
 </style>
 
 <section class="screen" id="directorAccess">
@@ -236,6 +242,11 @@ window.addEventListener('DOMContentLoaded',()=>{loadChecklist();if('serviceWorke
 <div class="m28-panel"><b>Restaurantes</b><div style="margin-top:10px">
 <span class="m28-badge">Farini Fustera</span><span class="m28-badge">Mandala Port</span><span class="m28-badge">Rull</span><span class="m28-badge">Mandala Fustera</span><span class="m28-badge">Farini Benissa</span>
 </div></div>
+<div id="m28RestaurantProgress" class="m28-dashboard">
+<div class="m28-dashboard-title">Progreso de los restaurantes</div>
+<p class="m28-muted" style="margin:4px 0 8px">Vista general en tiempo real.</p>
+<div id="m28RestaurantProgressRows"></div>
+</div>
 <div id="m28Live"></div><div id="m28History"></div>
 <div id="m28Admin" class="m28-panel" style="display:none">
 <b>Administración</b>
@@ -660,6 +671,29 @@ window.live = async function(){
     let act=a.filter(x=>x.estado==='activa');
     let fin=a.filter(x=>x.estado==='finalizada');
 
+    // Cuadro de mando: los cinco restaurantes aparecen siempre, incluso al 0 %.
+    const restaurantes=['Farini Fustera','Mandala Port','Rull','Mandala Fustera','Farini Benissa'];
+    const rows=document.getElementById('m28RestaurantProgressRows');
+    if(rows){
+      rows.innerHTML='';
+      restaurantes.forEach(rest=>{
+        const rr=act.filter(x=>x.restaurante===rest);
+        const total=rr.reduce((n,x)=>n+Number(x.total_tareas||0),0);
+        const hechas=rr.reduce((n,x)=>n+Number(x.tareas_completadas||0),0);
+        const pct=total?Math.round(hechas*100/total):0;
+        const dir=rr.find(x=>x.tipo==='director');
+        const rango=rr.find(x=>x.tipo==='rango');
+        const dirPct=dir&&Number(dir.total_tareas)?Math.round(Number(dir.tareas_completadas||0)*100/Number(dir.total_tareas)):0;
+        const ranPct=rango&&Number(rango.total_tareas)?Math.round(Number(rango.tareas_completadas||0)*100/Number(rango.total_tareas)):0;
+        const d=document.createElement('div');
+        d.className='m28-rest-card';
+        d.innerHTML='<div class="m28-rest-head"><span class="m28-rest-name">'+esc(rest)+'</span><span class="m28-rest-pct">'+pct+'%</span></div>'+
+          '<div class="m28-rest-track"><div class="m28-rest-fill" style="width:'+pct+'%"></div></div>'+
+          '<div class="m28-rest-detail"><span>Director: '+(dir?dirPct+'%':'0%')+'</span><span>Jefe de Rango: '+(rango?ranPct+'%':'0%')+'</span></div>';
+        rows.appendChild(d);
+      });
+    }
+
     L.innerHTML='<div class="m28-panel"><b>Checklists activas · tiempo real</b><p class="m28-muted">Actualización automática cada 3 segundos.</p></div>';
     act.forEach(x=>{
       let pc=x.total_tareas?Math.round(x.tareas_completadas*100/x.total_tareas):0,d=document.createElement('div');
@@ -689,4 +723,153 @@ window.live = async function(){
     L.innerHTML='<div class="m28-panel"><b>Sin conexión con Supabase</b></div>';
   }
 };
+</script>
+
+<script>
+/* HISTORIAL GUARDADO · GERENCIA / SUPERVISIÓN
+   Lee exclusivamente de Supabase: no guarda el historial en el móvil. */
+(function(){
+  function addHistoryUI(){
+    const panel=document.getElementById('m28Panel');
+    if(!panel || document.getElementById('savedHistoryBox')) return;
+
+    const main=panel.querySelector('main');
+    if(!main) return;
+
+    const box=document.createElement('div');
+    box.id='savedHistoryBox';
+    box.className='m28-panel';
+    box.style.marginTop='18px';
+    box.innerHTML=
+      '<b style="font-size:22px">Historial guardado</b>'+
+      '<p class="m28-muted">Checklists conservadas en Supabase.</p>'+
+      '<div style="display:grid;gap:10px;margin-top:12px">'+
+        '<select id="histRestaurant" style="padding:12px;border-radius:12px;border:1px solid #ddd">'+
+          '<option value="">Todos los restaurantes</option>'+
+          '<option>Farini Fustera</option><option>Mandala Port</option><option>Rull</option>'+
+          '<option>Mandala Fustera</option><option>Farini Benissa</option>'+
+        '</select>'+
+        '<input id="histResponsible" type="text" placeholder="Buscar responsable" style="padding:12px;border-radius:12px;border:1px solid #ddd">'+
+        '<input id="histDate" type="date" style="padding:12px;border-radius:12px;border:1px solid #ddd">'+
+        '<button type="button" class="m28-primary" onclick="cargarHistorialGuardado()">Buscar</button>'+
+        '<button type="button" class="reset" onclick="limpiarFiltrosHistorial()">Limpiar filtros</button>'+
+      '</div>'+
+      '<div id="savedHistoryResults" style="margin-top:14px"></div>';
+    main.appendChild(box);
+  }
+
+  window.limpiarFiltrosHistorial=function(){
+    const r=document.getElementById('histRestaurant');
+    const n=document.getElementById('histResponsible');
+    const f=document.getElementById('histDate');
+    if(r)r.value=''; if(n)n.value=''; if(f)f.value='';
+    cargarHistorialGuardado();
+  };
+
+  window.cargarHistorialGuardado=async function(){
+    addHistoryUI();
+    const out=document.getElementById('savedHistoryResults');
+    if(!out)return;
+    out.innerHTML='<div class="m28-muted">Cargando historial...</div>';
+    try{
+      let rows=await sb('checklists?select=*&estado=eq.finalizada&guardada=eq.true&order=finalizada_en.desc&limit=200');
+      const rest=(document.getElementById('histRestaurant')?.value||'').trim();
+      const resp=(document.getElementById('histResponsible')?.value||'').trim().toLowerCase();
+      const date=document.getElementById('histDate')?.value||'';
+
+      rows=rows.filter(x=>{
+        if(rest && x.restaurante!==rest)return false;
+        if(resp && !(x.responsable||'').toLowerCase().includes(resp))return false;
+        if(date){
+          const d=new Date(x.finalizada_en||x.actualizada_en);
+          const local=[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
+          if(local!==date)return false;
+        }
+        return true;
+      });
+
+      if(!rows.length){
+        out.innerHTML='<div class="m28-muted">No hay checklists guardadas con estos filtros.</div>';
+        return;
+      }
+
+      out.innerHTML='';
+      rows.forEach(x=>{
+        const d=document.createElement('div');
+        d.className='m28-list';
+        const fecha=new Date(x.finalizada_en||x.actualizada_en).toLocaleString('es-ES');
+        d.innerHTML=
+          '<b>'+esc(x.tipo==='director'?'Director':'Jefe de Rango')+' · '+esc(x.restaurante)+'</b>'+
+          '<div class="m28-muted">'+esc(x.responsable)+' · '+fecha+'</div>'+
+          '<div class="m28-muted">'+Number(x.tareas_completadas||0)+' de '+Number(x.total_tareas||0)+' tareas</div>'+
+          '<button type="button" style="margin-top:10px;padding:10px 16px;border-radius:12px;border:0;font-weight:700" onclick="verChecklistGuardada(\''+esc(x.id)+'\')">Ver detalle</button>'+
+          '<button type="button" style="margin-top:10px;margin-left:8px;padding:10px 16px;border-radius:12px;border:0;background:#8b2f2f;color:#fff;font-weight:700" onclick="eliminarChecklistGuardada(\''+esc(x.id)+'\',\''+esc(x.responsable)+'\')">Eliminar de Supabase</button>';
+        out.appendChild(d);
+      });
+    }catch(e){
+      console.error(e);
+      out.innerHTML='<div class="m28-muted">No se ha podido cargar el historial de Supabase.</div>';
+    }
+  };
+
+  
+  window.eliminarChecklistGuardada=async function(id,responsable){
+    if(!id)return;
+    if(!confirm('¿Eliminar definitivamente de Supabase la checklist guardada de '+responsable+'? Esta acción no se puede deshacer.'))return;
+    try{
+      const r=await fetch(SB_URL+'checklists?id=eq.'+encodeURIComponent(id),{
+        method:'DELETE',
+        headers:{
+          apikey:SB_KEY,
+          Authorization:'Bearer '+SB_KEY,
+          Prefer:'return=minimal'
+        }
+      });
+      if(!r.ok)throw new Error(await r.text());
+      await cargarHistorialGuardado();
+      if(typeof live==='function') await live();
+    }catch(e){
+      console.error(e);
+      alert('No se ha podido eliminar la checklist de Supabase.');
+    }
+  };
+
+window.verChecklistGuardada=async function(id){
+    try{
+      const rows=await sb('checklists?select=*&id=eq.'+encodeURIComponent(id)+'&limit=1');
+      if(!rows.length)return alert('No se ha encontrado esta checklist.');
+      const x=rows[0];
+      const tareas=x.tareas||{};
+      const hechas=Object.entries(tareas).filter(([k,v])=>v===true || v==='true').map(([k])=>k);
+      const fecha=new Date(x.finalizada_en||x.actualizada_en).toLocaleString('es-ES');
+      let txt=(x.tipo==='director'?'Director':'Jefe de Rango')+
+        '\nRestaurante: '+(x.restaurante||'')+
+        '\nResponsable: '+(x.responsable||'')+
+        '\nFinalizada: '+fecha+
+        '\nTareas completadas: '+(x.tareas_completadas||0)+' de '+(x.total_tareas||0);
+      if(hechas.length) txt+='\n\nTareas registradas:\n• '+hechas.join('\n• ');
+      if(x.observaciones) txt+='\n\nObservaciones:\n'+x.observaciones;
+      alert(txt);
+    }catch(e){
+      console.error(e);
+      alert('No se ha podido abrir esta checklist guardada.');
+    }
+  };
+
+  const previousLive=window.live;
+  window.live=async function(){
+    await previousLive();
+    addHistoryUI();
+    await cargarHistorialGuardado();
+  };
+
+  const previousShow=window.show;
+  window.show=function(id){
+    previousShow(id);
+    if(id==='m28Panel'){
+      addHistoryUI();
+      cargarHistorialGuardado();
+    }
+  };
+})();
 </script>
