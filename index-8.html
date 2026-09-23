@@ -1,0 +1,493 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f4f1eb"><meta name="apple-mobile-web-app-capable" content="yes">
+<title>Mandala · Manuales</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png">
+<style>
+:root{--bg:#f4f1eb;--paper:#fff;--ink:#202020;--muted:#777168;--gold:#aa9573;--line:#ded5c7}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink)}
+.screen{display:none;min-height:100vh}.active{display:block}
+.home{max-width:900px;margin:auto;padding:calc(28px + env(safe-area-inset-top)) 18px 40px}
+.hero{text-align:center}.hero img{width:175px;height:175px;object-fit:contain;border-radius:28px;background:white}
+.hero h1{font-size:30px;margin:18px 0 5px}.hero p{margin:0 0 28px;color:var(--muted);font-size:17px}
+.grid{display:grid;gap:14px}.role{width:100%;text-align:left;border:1px solid var(--line);background:var(--paper);border-radius:20px;padding:21px;box-shadow:0 5px 18px #0000000b}
+.role b{display:block;font-size:21px;margin-bottom:7px}.role small{font-size:15px;color:var(--muted)}.role em{float:right;font-style:normal;font-size:30px;color:var(--gold)}
+header{position:sticky;top:0;z-index:4;display:flex;align-items:center;gap:12px;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:#f4f1ebf2;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header .back{width:46px;height:46px;border:0;border-radius:50%;background:white;font-size:34px}header b{display:block;font-size:20px}header small{color:var(--muted)}
+main{max-width:900px;margin:auto;padding:16px 15px 45px}.intro{background:white;border:1px solid var(--line);border-radius:18px;padding:17px;margin-bottom:12px}
+.intro p{font-size:17px;line-height:1.5;margin:0 0 10px}.intro p:last-child{margin:0}
+.tools{display:flex;gap:9px;margin:12px 0}.tools button{border:1px solid var(--line);background:white;border-radius:12px;padding:10px 14px}
+.proc{background:white;border:1px solid var(--line);border-radius:17px;margin:10px 0;overflow:hidden}
+.proc summary{padding:18px;font-size:18px;font-weight:750;cursor:pointer;list-style:none;display:flex;gap:12px;justify-content:space-between;align-items:center}
+.proc summary::-webkit-details-marker{display:none}.proc summary span{color:var(--gold);font-size:22px}.proc[open] summary span{transform:rotate(45deg)}
+.body{border-top:1px solid #eee7dc;padding:6px 19px 16px}.body ul{padding-left:22px;margin:8px 0}.body li{font-size:17px;line-height:1.48;margin:9px 0}
+.foot{text-align:center;color:var(--muted);font-size:12px;padding:26px 0}
+@media(min-width:720px){.grid{grid-template-columns:repeat(3,1fr)}.role{min-height:145px}.hero img{width:200px;height:200px}}
+
+.hubcards{display:grid;gap:14px;margin-top:14px}.hubcard{border:1px solid var(--line);background:#fff;border-radius:20px;padding:24px;text-align:left;font:inherit;box-shadow:0 5px 18px #0000000b}.hubcard b{font-size:20px;display:block;margin-bottom:6px}.hubcard small{font-size:15px;color:var(--muted)}
+.checkgroup{background:#fff;border:1px solid var(--line);border-radius:17px;margin:12px 0;padding:16px}.checkgroup h3{margin:0 0 10px;font-size:18px}.checkitem{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid #eee7dc;font-size:16px;line-height:1.4}.checkitem:first-of-type{border-top:0}.checkitem input{width:24px;height:24px;flex:0 0 auto;accent-color:#7b6b52}.progress{height:12px;background:#e8e1d7;border-radius:20px;overflow:hidden;margin:10px 0}.progress>div{height:100%;background:#7b6b52;width:0}.note{width:100%;min-height:110px;border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit;background:#fff}.reset{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 14px}.installhint{font-size:13px;color:var(--muted);margin-top:10px}
+</style></head><body>
+<section id="home" class="screen active home">
+<div class="hero"><img src="logo-mandala.jpg" alt="Mandala"><h1>Manuales y Procedimientos</h1><p>GRUPO MANDALA</p></div>
+<div class="grid">
+<button class="role" onclick="show('director')"><em>›</em><b>DIRECTOR</b><small>Organización, liderazgo y control global</small></button>
+<button class="role" onclick="show('rango')"><em>›</em><b>JEFE DE RANGO</b><small>Servicio, comandas y gestión del rango</small></button>
+<button class="role" onclick="show('runner')"><em>›</em><b>CAMARERO / RUNNER</b><small>Servicio, apoyo y funcionamiento de sala</small></button>
+<button class="role" onclick="show('normas')"><em>›</em><b>NORMAS GENERALES</b><small>Convivencia, funcionamiento y régimen disciplinario</small></button>
+</div></section>
+
+<section class="screen" id="director"><header><button class="back" onclick="goHome()">‹</button><div><b>Director</b><small>Manuales y control</small></div></header><main><div class="intro"><p>Consulta el manual completo o abre la checklist operativa del Director.</p></div><div class="hubcards"><button class="hubcard" onclick="show('directorManual')"><b>📖 MANUAL DE PROCEDIMIENTOS</b><small>Consulta el manual completo del Director</small></button><button class="hubcard" onclick="show('directorChecklist')"><b>✅ CHECKLIST DEL DIRECTOR</b><small>Marca las tareas del turno y añade observaciones</small></button></div></main></section>
+<section class="screen manual" id="directorManual">
+<header><button class="back" onclick="show('director')">‹</button><div><b>Director</b><small>Manual de procedimientos</small></div></header>
+<main>
+<div class="intro"><p>El director es el máximo responsable del correcto funcionamiento del restaurante durante su turno. Debe garantizar la organización, coordinación y supervisión del establecimiento, del equipo y del servicio, manteniendo en todo momento los estándares establecidos por Mandala.</p></div>
+<div class="tools"><button onclick="allOpen('directorManual',true)">Abrir todo</button><button onclick="allOpen('directorManual',false)">Cerrar todo</button></div>
+<details class="proc"><summary>1. ENTRADA Y FICHAJE<span>＋</span></summary>
+    <div class="body"><ul><li>Llegar al puesto de trabajo preparado para comenzar el turno, correctamente uniformado y con la imagen personal adecuada.</li><li>Fichar la entrada inmediatamente al incorporarse al puesto de trabajo.</li><li>Registrar la hora de entrada en la hoja de registro de horas.</li><li>Registrar correctamente en la hoja de horas todas las pausas realizadas durante la jornada.</li><li>Una vez fichada la entrada, comenzar a trabajar directamente, evitando pérdidas de tiempo antes de iniciar las tareas.</li></ul></div></details>
+<details class="proc"><summary>2. RESPONSABILIDAD GENERAL<span>＋</span></summary>
+    <div class="body"><ul><li>El director es responsable del funcionamiento global del restaurante.</li><li>Debe supervisar y coordinar todas las áreas, anticiparse a los problemas y tomar las decisiones necesarias para garantizar un servicio organizado, profesional y eficiente.</li><li>Debe conocer en todo momento la situación del restaurante, tanto en sala como en cocina, barra y demás áreas de trabajo.</li></ul></div></details>
+<details class="proc"><summary>3. CONTROL DEL ESTABLECIMIENTO<span>＋</span></summary>
+    <div class="body"><ul><li>Comprobar el correcto estado general del restaurante antes, durante y después del servicio.</li><li>Supervisar limpieza, orden, mantenimiento, iluminación, climatización, instalaciones y material.</li><li>Cualquier avería, incidencia o necesidad de mantenimiento deberá detectarse, comunicarse y gestionarse lo antes posible.</li></ul></div></details>
+<details class="proc"><summary>4. CONTROL DE RESERVAS<span>＋</span></summary>
+    <div class="body"><ul><li>Revisar las reservas y previsiones de cada servicio.</li><li>Conocer número de clientes, horarios, mesas, grupos, peticiones especiales, alergias, intolerancias y cualquier observación relevante.</li><li>Organizar la sala y el personal teniendo en cuenta la previsión de trabajo.</li><li>Realizar seguimiento de retrasos, cancelaciones, modificaciones y posibles incidencias con las reservas.</li></ul></div></details>
+<details class="proc"><summary>5. ORGANIZACIÓN Y CONTROL DEL PERSONAL<span>＋</span></summary>
+    <div class="body"><ul><li>Organizar al equipo según las necesidades reales del servicio.</li><li>Distribuir puestos, rangos y responsabilidades de forma clara.</li><li>Controlar entradas, salidas, horarios y pausas del personal.</li><li>Adaptar la plantilla cuando las reservas, la climatología o el volumen de trabajo así lo requieran.</li><li>El director debe asegurarse de que cada trabajador conoce su puesto y sus responsabilidades.</li></ul></div></details>
+<details class="proc"><summary>6. LIDERAZGO Y DIRECCIÓN DEL EQUIPO<span>＋</span></summary>
+    <div class="body"><ul><li>Dirigir al equipo con profesionalidad, educación, respeto y firmeza.</li><li>Dar instrucciones claras y mantener una comunicación constante con los responsables y trabajadores.</li><li>Resolver los problemas de manera rápida y evitar que pequeñas incidencias puedan afectar al funcionamiento general del restaurante.</li><li>El director debe ser una figura de referencia para el equipo y dar ejemplo con su comportamiento, puntualidad, actitud y compromiso.</li></ul></div></details>
+<details class="proc"><summary>7. FORMACIÓN Y SEGUIMIENTO DEL PERSONAL<span>＋</span></summary>
+    <div class="body"><ul><li>Supervisar que cada trabajador conoce correctamente sus funciones y procedimientos.</li><li>Detectar necesidades de formación y corregir errores de manera constructiva.</li><li>Realizar seguimiento de la evolución del personal y comunicar las situaciones relevantes a la dirección correspondiente.</li></ul></div></details>
+<details class="proc"><summary>8. ATENCIÓN AL CLIENTE<span>＋</span></summary>
+    <div class="body"><ul><li>Garantizar una atención cercana, profesional y resolutiva.</li><li>Estar pendiente de la experiencia general del cliente y actuar cuando exista cualquier incidencia, reclamación o situación especial.</li><li>El director deberá intervenir cuando sea necesario para solucionar problemas y garantizar que el cliente reciba una respuesta adecuada.</li></ul></div></details>
+<details class="proc"><summary>9. CONTROL DEL EQUIPO, RÉGIMEN INTERNO E INCIDENCIAS<span>＋</span></summary>
+    <div class="body"><ul><li>Supervisar el cumplimiento de las normas internas y procedimientos establecidos por la empresa.</li><li>Cualquier incumplimiento, conflicto o incidencia relevante deberá gestionarse correctamente y comunicarse cuando corresponda.</li><li>El director debe actuar con criterio, manteniendo siempre el respeto y la profesionalidad.</li></ul></div></details>
+<details class="proc"><summary>10. INVITACIONES, CONSUMOS, MERMAS Y ERRORES<span>＋</span></summary>
+    <div class="body"><ul><li>Las invitaciones, consumos especiales, mermas, errores o anulaciones deberán estar correctamente controlados.</li><li>El director será responsable de autorizar o ejecutar aquellas operaciones que correspondan a su responsabilidad y de garantizar que queden correctamente registradas.</li></ul></div></details>
+<details class="proc"><summary>11. CONTROL DE COSTES<span>＋</span></summary>
+    <div class="body"><ul><li>Mantener un control responsable sobre los costes del restaurante.</li><li>Evitar desperdicios, consumos innecesarios y pérdidas de producto.</li><li>Supervisar el uso adecuado de materiales y recursos y comunicar cualquier desviación importante.</li></ul></div></details>
+<details class="proc"><summary>12. COMPRAS Y RECEPCIÓN DE MERCANCÍA<span>＋</span></summary>
+    <div class="body"><ul><li>Supervisar las necesidades de producto y material del establecimiento.</li><li>Controlar la recepción de mercancías y comprobar que los productos recibidos coinciden con los pedidos y albaranes correspondientes.</li><li>Cualquier diferencia, falta o incidencia deberá comunicarse y gestionarse.</li></ul></div></details>
+<details class="proc"><summary>13. UNIFORMIDAD E IMAGEN DEL EQUIPO<span>＋</span></summary>
+    <div class="body"><ul><li>Supervisar que todo el personal se encuentre correctamente uniformado y preparado antes de comenzar su jornada.</li><li>La imagen, higiene y presentación del equipo deben corresponder con los estándares establecidos por Mandala.</li><li>El director debe ser el primero en dar ejemplo.</li></ul></div></details>
+<details class="proc"><summary>14. SEGUIMIENTO Y COMUNICACIÓN<span>＋</span></summary>
+    <div class="body"><ul><li>Mantener una comunicación constante con el equipo y con los responsables correspondientes.</li><li>Informar de las incidencias relevantes ocurridas durante el servicio y de cualquier necesidad que pueda afectar a los siguientes turnos.</li><li>La información importante debe quedar correctamente transmitida para garantizar la continuidad del funcionamiento del restaurante.</li></ul></div></details>
+<details class="proc"><summary>15. PRINCIPIOS DE ACTUACIÓN<span>＋</span></summary>
+    <div class="body"><ul><li>El director deberá trabajar siempre desde la responsabilidad, organización, anticipación, comunicación y profesionalidad.</li><li>Debe mantener una visión global del restaurante y evitar centrarse únicamente en un área cuando otras necesiten atención.</li><li>Su función principal es conseguir que todas las partes del establecimiento funcionen de manera coordinada.</li></ul></div></details>
+<details class="proc"><summary>16. COORDINACIÓN CON EL JEFE DE COCINA<span>＋</span></summary>
+    <div class="body"><ul><li>Antes del servicio, revisar conjuntamente reservas, previsiones y necesidades de producto.</li><li>Comprobar que las mise en place y el producto necesario para el servicio estén preparados.</li><li>Coordinar prioridades, organización y ritmo de trabajo.</li><li>Mantener una comunicación constante entre cocina y sala.</li><li>Resolver conjuntamente las incidencias que puedan afectar al servicio.</li><li>Controlar calidad, presentación y tiempos de salida.</li><li>Al finalizar, revisar las incidencias y necesidades importantes para los siguientes servicios.</li></ul></div></details>
+<details class="proc"><summary>17. TRABAJO EN EQUIPO Y COLABORACIÓN<span>＋</span></summary>
+    <div class="body"><ul><li>El director deberá mantener siempre una actitud colaborativa con todo el equipo, prestando apoyo cuando sea necesario independientemente del puesto o área.</li><li>Esto incluye ayudar a sala, jefes de rango, camareros, runners, barra, cocina o cualquier compañero que pueda necesitar apoyo durante el servicio.</li><li>El director debe fomentar el trabajo en equipo y ser el primero en dar ejemplo de colaboración e implicación.</li></ul></div></details>
+<details class="proc"><summary>18. LIDERAZGO ACTIVO Y APOYO AL EQUIPO<span>＋</span></summary>
+    <div class="body"><ul><li>El director debe ejercer un liderazgo activo y ser un ejemplo para todo el equipo, tanto en puntualidad, actitud y compromiso como en su implicación diaria en el funcionamiento del restaurante.</li><li>Su función no se limita a supervisar. Debe estar presente y participar activamente en las distintas fases de la jornada: apertura, preparación, servicio y cierre, prestando apoyo allí donde sea necesario, especialmente en los momentos de mayor carga de trabajo.</li><li>La atención y cercanía con los clientes forman parte de sus responsabilidades, pero siempre deben estar equilibradas con las necesidades del servicio. Cuando el restaurante requiera su presencia operativa, deberá priorizar la coordinación, supervisión y apoyo al equipo, evitando prolongar conversaciones con clientes que puedan apartarle de sus funciones.</li><li>Durante el servicio deberá mantenerse atento al funcionamiento general del restaurante, anticipándose a las necesidades y colaborando cuando sea necesario.</li><li>Del mismo modo, durante la apertura y el cierre deberá implicarse activamente y asegurarse de que el equipo cuenta con el apoyo necesario hasta completar correctamente las tareas.</li><li>El director debe transmitir con su comportamiento disponibilidad, compromiso y trabajo en equipo, siendo una figura de referencia que acompaña, organiza y ayuda al equipo, además de dirigirlo.</li></ul></div></details>
+<details class="proc"><summary>19. OBJETIVO FINAL<span>＋</span></summary>
+    <div class="body"><ul><li>El objetivo del director es garantizar que el restaurante funcione de manera organizada, eficiente y profesional, consiguiendo una buena experiencia para el cliente y un entorno de trabajo coordinado para todo el equipo.</li></ul></div></details>
+<details class="proc"><summary>PRINCIPIO FINAL<span>＋</span></summary>
+    <div class="body"><ul><li>DIRIGIR NO ES ÚNICAMENTE SUPERVISAR: ES ORGANIZAR, ANTICIPARSE, COMUNICAR, RESOLVER, COLABORAR Y DAR EJEMPLO.</li></ul></div></details>
+<div class="foot">GRUPO MANDALA · MANUALES Y PROCEDIMIENTOS</div>
+</main></section>
+<section class="screen" id="directorChecklist"><header><button class="back" onclick="show('director')">‹</button><div><b>Checklist del Director</b><small>Control operativo del turno</small></div></header><main><div class="intro"><p><b id="progText">0 de 0 tareas completadas</b></p><div class="progress"><div id="progBar"></div></div><p class="installhint">El progreso y las observaciones se guardan automáticamente en este dispositivo.</p></div><div class="checkgroup"><h3>1. ENTRADA Y CONTROL INICIAL</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d1"><span>Llegar puntual, correctamente uniformado y preparado para comenzar a trabajar.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d2"><span>Fichar la entrada y registrar la hora en la hoja de horas.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d3"><span>Revisar las incidencias y comunicaciones del turno anterior.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d4"><span>Enviar al grupo de Recursos Humanos la hoja de registros del día anterior.</span></label></div><div class="checkgroup"><h3>2. REVISIÓN DEL LOCAL</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d5"><span>Comprobar limpieza, orden, iluminación, climatización y estado general del local.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d6"><span>Revisar baños y zonas comunes.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d7"><span>Comprobar instalaciones, averías o necesidades de mantenimiento.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d8"><span>Revisar exteriores y terraza cuando estén operativos; comprobar calefacciones si corresponde.</span></label></div><div class="checkgroup"><h3>3. RESERVAS Y PREVISIÓN</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d9"><span>Revisar reservas, número de clientes, horarios, grupos y observaciones.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d10"><span>Comprobar alergias, intolerancias y peticiones especiales.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d11"><span>Valorar previsión de trabajo, climatología y necesidades reales de personal.</span></label></div><div class="checkgroup"><h3>4. PERSONAL Y ORGANIZACIÓN</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d12"><span>Comprobar personal de sala previsto y distribuir puestos/rangos.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d13"><span>Comprobar personal de cocina previsto con el jefe de cocina.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d14"><span>Ajustar personal si el volumen de reservas o el tiempo lo requieren.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d15"><span>Confirmar que todo el equipo conoce sus responsabilidades.</span></label></div><div class="checkgroup"><h3>5. MISE EN PLACE Y PREPARACIÓN</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d16"><span>Comprobar mise en place de sala y rangos: material, estaciones y montaje.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d17"><span>Comprobar mise en place de barra.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d18"><span>Revisar con el jefe de cocina la mise en place, producto y necesidades del servicio.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d19"><span>Comprobar faltas de producto, sugerencias y productos que se quieran potenciar.</span></label></div><div class="checkgroup"><h3>6. BRIEFING ANTES DEL SERVICIO</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d20"><span>Coordinar con el jefe de cocina prioridades, tiempos y posibles incidencias.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d21"><span>Realizar briefing con el equipo de sala antes del servicio.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d22"><span>Comunicar reservas especiales, alergias, faltas, sugerencias, objetivos y organización del turno.</span></label></div><div class="checkgroup"><h3>7. DURANTE EL SERVICIO</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d23"><span>Mantener una visión global de sala, cocina y barra.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d24"><span>Supervisar tiempos, calidad, atención al cliente y funcionamiento de los rangos.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d25"><span>Apoyar activamente al equipo cuando haya carga de trabajo.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d26"><span>Priorizar las necesidades operativas evitando conversaciones prolongadas con clientes cuando el servicio requiera apoyo.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d27"><span>Gestionar incidencias, reclamaciones, invitaciones, anulaciones, errores y mermas.</span></label></div><div class="checkgroup"><h3>8. CIERRE Y SEGUIMIENTO</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d28"><span>Supervisar limpieza, recogida, reposición y orden de todas las áreas.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d29"><span>Comprobar que las tareas de cierre quedan finalizadas antes de dar salida al personal.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d30"><span>Registrar y comunicar incidencias relevantes y necesidades para el siguiente turno.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d31"><span>Revisar fichajes, horas y pausas cuando corresponda.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d32"><span>Confirmar que el restaurante queda correctamente preparado y seguro.</span></label></div><div class="checkgroup"><h3>OBSERVACIONES / INCIDENCIAS</h3><textarea id="dirNotes" class="note" placeholder="Escribe aquí incidencias, pendientes o información para el siguiente turno..."></textarea></div><button class="reset" onclick="resetChecklist()">Reiniciar checklist</button><div class="foot">GRUPO MANDALA · CHECKLIST DEL DIRECTOR</div></main></section>
+<section class="screen" id="rango"><header><button class="back" onclick="goHome()">‹</button><div><b>Jefe de rango</b><small>Manuales y control</small></div></header><main><div class="intro"><p>Consulta el manual completo o abre la checklist operativa del Jefe de Rango.</p></div><div class="hubcards"><button class="hubcard" onclick="show('rangoManual')"><b>📖 MANUAL DE PROCEDIMIENTOS</b><small>Consulta el manual completo del Jefe de Rango</small></button><button class="hubcard" onclick="show('rangoAccess')"><b>✅ CHECKLIST DEL JEFE DE RANGO</b><small>Marca las tareas del turno y añade observaciones</small></button></div></main></section>
+<section class="screen manual" id="rangoManual">
+<header><button class="back" onclick="show('rango')">‹</button><div><b>Jefe de rango</b><small>Manual de procedimientos</small></div></header>
+<main>
+<div class="intro"><p>El jefe de rango es el responsable directo del funcionamiento y servicio de las mesas que tiene asignadas. Debe controlar su rango desde la preparación hasta la salida del cliente y tomar personalmente las comandas mediante PDA, asegurándose de que toda la información llegue correctamente.</p><p>Además de ser responsable de su rango, será responsable de la sala cuando el director así se lo delegue, asumiendo durante ese periodo la supervisión y coordinación necesarias para garantizar el correcto funcionamiento del servicio.</p></div>
+<div class="tools"><button onclick="allOpen('rangoManual',true)">Abrir todo</button><button onclick="allOpen('rangoManual',false)">Cerrar todo</button></div>
+<details class="proc"><summary>1. ENTRADA Y FICHAJE<span>＋</span></summary>
+    <div class="body"><ul><li>Llegar al puesto de trabajo preparado para comenzar el turno, correctamente uniformado y con la imagen personal adecuada.</li><li>Fichar la entrada inmediatamente al incorporarse al puesto de trabajo.</li><li>Registrar la hora de entrada en la hoja de registro de horas.</li><li>Registrar correctamente en la hoja de horas todas las pausas realizadas durante la jornada.</li><li>Una vez fichada la entrada, comenzar a trabajar directamente, evitando pérdidas de tiempo antes de iniciar las tareas.</li></ul></div></details>
+<details class="proc"><summary>2. PREPARACIÓN ANTES DEL SERVICIO<span>＋</span></summary>
+    <div class="body"><ul><li>Preparar y revisar las mesas de su rango.</li><li>Comprobar material, limpieza, montaje y orden.</li><li>Conocer las reservas y observaciones de su rango.</li><li>Solucionar o comunicar cualquier falta o problema antes del servicio.</li></ul></div></details>
+<details class="proc"><summary>3. RESERVAS Y ATENCIÓN AL CLIENTE<span>＋</span></summary>
+    <div class="body"><ul><li>Conocer y controlar las reservas de su rango.</li><li>Controlar la llegada de los clientes.</li><li>Si una reserva se retrasa o no llega, comunicarlo al director o responsable de turno. No contactar directamente con el cliente.</li><li>Recibir y atender al cliente con educación, cercanía y profesionalidad.</li><li>Conocer sus necesidades, alergias, intolerancias y preferencias.</li><li>Anticiparse a sus necesidades durante el servicio.</li></ul></div></details>
+<details class="proc"><summary>4. TOMA DE COMANDAS Y PDA<span>＋</span></summary>
+    <div class="body"><ul><li>Tomar personalmente las comandas de todas las mesas de su rango.</li><li>Introducir correctamente productos, cantidades, modificaciones y peticiones en la PDA.</li><li>Registrar correctamente alergias, intolerancias y necesidades especiales.</li><li>Si algo no aparece en la PDA, introducirlo en el campo editable.</li><li>Revisar la comanda antes de enviarla y comprobar que llega correctamente a cocina y barra.</li><li>Comprobar que lo servido corresponde con lo solicitado.</li></ul></div></details>
+<details class="proc"><summary>5. HOSPITALIDAD Y ATENCIÓN<span>＋</span></summary>
+    <div class="body"><ul><li>Hacer que el cliente se sienta cómodo y bien atendido.</li><li>Tratarlo con cercanía, educación y naturalidad.</li><li>Cuidar los pequeños detalles y anticiparse a sus necesidades.</li><li>Mantener una actitud positiva y profesional.</li><li>Despedir correctamente y agradecer su visita.</li></ul></div></details>
+<details class="proc"><summary>6. CONTROL DEL SERVICIO EN SU RANGO<span>＋</span></summary>
+    <div class="body"><ul><li>Controlar constantemente las mesas y los tiempos del servicio.</li><li>Vigilar especialmente la reposición de bebidas.</li><li>Retirar platos, vasos y cubiertos cuando corresponda.</li><li>Mantener las mesas limpias y ordenadas.</li><li>Comprobar la correcta presentación de los platos.</li><li>Detectar y comunicar cualquier error o incidencia.</li></ul></div></details>
+<details class="proc"><summary>7. COMUNICACIÓN CON EL DIRECTOR O RESPONSABLE<span>＋</span></summary>
+    <div class="body"><ul><li>Comunicar cualquier incidencia, queja o reclamación.</li><li>Informar de problemas con reservas, productos, material o servicio.</li><li>Comunicar cualquier necesidad especial del cliente.</li><li>Informar de todo aquello que no pueda solucionar por sí mismo.</li><li>Hacer seguimiento de las incidencias hasta su resolución.</li><li>En caso de una equivocación, una invitación o una merma, comunicarlo directamente al director para que sea él quien la ejecute y registre según el procedimiento establecido.</li><li>Cualquier situación importante debe comunicarse al director o responsable de turno.</li></ul></div></details>
+<details class="proc"><summary>8. CONOCIMIENTO DEL PRODUCTO<span>＋</span></summary>
+    <div class="body"><ul><li>Carta, ingredientes y elaboraciones.</li><li>Alérgenos.</li><li>Sugerencias y productos fuera de carta.</li><li>Productos no disponibles.</li><li>Productos que la dirección quiera potenciar.</li><li>Debe poder responder a las dudas del cliente o consultar rápidamente cuando sea necesario.</li></ul></div></details>
+<details class="proc"><summary>9. VENTA Y SUGERENCIAS<span>＋</span></summary>
+    <div class="body"><ul><li>Recomendar platos, bebidas y postres según las preferencias del cliente.</li><li>Informar de las sugerencias del día.</li><li>Potenciar los productos indicados por la dirección.</li><li>Ofrecer complementos y alternativas.</li><li>Realizar una venta activa, pero natural y sin insistir.</li></ul></div></details>
+<details class="proc"><summary>10. CUENTAS Y CIERRE DE MESAS<span>＋</span></summary>
+    <div class="body"><ul><li>Revisar personalmente las cuentas antes de entregarlas.</li><li>Comprobar productos, cantidades y modificaciones.</li><li>Asegurarse de que la mesa está limpia y recogida antes de entregar la cuenta.</li><li>Realizar el cobro según el procedimiento establecido.</li><li>Comprobar que no quedan mesas pendientes de cerrar.</li><li>Revisar cualquier posible error.</li></ul></div></details>
+<details class="proc"><summary>11. TRABAJO EN EQUIPO<span>＋</span></summary>
+    <div class="body"><ul><li>Mantener una comunicación respetuosa con el equipo.</li><li>Pedir apoyo cuando sea necesario y brindar apoyo a sus compañeros.</li><li>Asimismo, deberá mantener siempre una actitud colaborativa con el resto del equipo, prestando apoyo cuando sea necesario, independientemente de su rango. Esto incluye ayudar a runners, otros rangos, cocina y cualquier otro compañero que pueda necesitar apoyo durante el servicio.</li><li>Mantener la calma durante los momentos de mayor trabajo.</li><li>Trabajar para que el servicio de su rango cumpla los estándares establecidos.</li></ul></div></details>
+<details class="proc"><summary>12. CIERRE DE SU RANGO<span>＋</span></summary>
+    <div class="body"><ul><li>Dejar las mesas limpias, recogidas y ordenadas.</li><li>Recoger y reponer el material necesario.</li><li>Comunicar faltas de material, averías o incidencias.</li><li>Comprobar que el rango queda preparado para el siguiente servicio.</li></ul></div></details>
+<details class="proc"><summary>PRINCIPIO FINAL<span>＋</span></summary>
+    <div class="body"><ul><li>El jefe de rango es responsable de su rango y de las mesas que tiene asignadas. Debe controlar el servicio de principio a fin, tomar personalmente las comandas mediante PDA, cuidar al cliente, controlar tiempos y bebidas, mantener las mesas en perfectas condiciones, realizar sugerencias y ventas, y comunicar al director o responsable cualquier incidencia importante.</li><li>Las equivocaciones, invitaciones y mermas deben ser comunicadas al director para que sea él quien las ejecute y registre.</li><li>El objetivo es ofrecer un servicio profesional y conseguir que el cliente tenga una excelente experiencia y quiera volver.</li></ul></div></details>
+<div class="foot">GRUPO MANDALA · MANUALES Y PROCEDIMIENTOS</div>
+</main></section>
+<section class="screen" id="rangoAccess"><header><button class="back" onclick="show('rango')">‹</button><div><b>Inicio de checklist</b><small>Identificación del turno</small></div></header><main><div class="m28-panel"><div class="m28-row"><label>Restaurante</label><select id="rangoRestaurant"><option value="">Selecciona restaurante</option><option>Farini Fustera</option><option>Mandala Port</option><option>Rull</option><option>Mandala Fustera</option><option>Farini Benissa</option></select></div><div class="m28-row"><label>Jefe de rango</label><input id="rangoName" type="text" autocomplete="name" placeholder="Escribe tu nombre"></div><button class="m28-primary" onclick="rangoStart()">COMENZAR CHECKLIST</button></div><div class="m28-panel"><button class="m28-secondary" onclick="m28OpenAccess('rangoAccess')">GERENCIA / SUPERVISIÓN</button></div></main></section>
+<section class="screen" id="rangoChecklist"><header><button class="back" onclick="show('rangoAccess')">‹</button><div><b>Checklist del Jefe de Rango</b><small id="rangoSub">Control operativo del turno</small></div></header><main><div class="intro"><p><b id="rangoProgText">0 de 30 tareas completadas</b></p><div class="progress"><div id="rangoProgBar"></div></div><p class="installhint">El progreso y las observaciones se guardan automáticamente en este dispositivo.</p></div><div class="checkgroup"><h3>1. ENTRADA Y FICHAJE</h3><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r1"><span>Llegar al puesto de trabajo preparado para comenzar el turno, correctamente uniformado y con la imagen personal adecuada.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r2"><span>Fichar la entrada inmediatamente al incorporarse al puesto de trabajo.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r3"><span>Registrar la hora de entrada en la hoja de registro de horas.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r4"><span>Registrar correctamente en la hoja de horas todas las pausas realizadas durante la jornada.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r5"><span>Una vez fichada la entrada, comenzar a trabajar directamente, evitando pérdidas de tiempo antes de iniciar las tareas.</span></label></div><div class="checkgroup"><h3>2. PREPARACIÓN DEL RANGO</h3><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r6"><span>Revisar limpieza, montaje, orden y presentación de todas las mesas de su rango.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r7"><span>Comprobar la mise en place y que dispone de todo el material necesario para el servicio.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r8"><span>Comunicar cualquier falta de material, rotura, avería o incidencia antes de comenzar.</span></label></div><div class="checkgroup"><h3>3. RESERVAS Y PREPARACIÓN DEL SERVICIO</h3><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r9"><span>Conocer las reservas, grupos, mesas especiales y observaciones de su rango.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r10"><span>Revisar alergias, intolerancias y necesidades especiales de los clientes.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r11"><span>Conocer las sugerencias, productos no disponibles, fuera de carta y productos a potenciar.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r12"><span>Tener clara la organización, prioridades e indicaciones dadas en el briefing.</span></label></div><div class="checkgroup"><h3>4. ATENCIÓN Y CONTROL DEL CLIENTE</h3><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r13"><span>Recibir al cliente siempre con una gran sonrisa, de forma natural y cálida, manteniendo un trato cercano, educado y profesional.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r14"><span>Controlar constantemente sus mesas, tiempos de servicio, limpieza, orden y reposición de bebidas.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r15"><span>Anticiparse a las necesidades del cliente y cuidar los pequeños detalles.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r16"><span>Mantener una actitud positiva, profesional y atenta durante todo el servicio.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r17"><span>Asumir la responsabilidad y coordinación de la sala cuando el director así se lo delegue, garantizando el correcto funcionamiento del servicio.</span></label></div><div class="checkgroup"><h3>5. COMANDAS Y VENTA</h3><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r18"><span>Tomar personalmente las comandas de las mesas de su rango mediante PDA.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r19"><span>Comprobar productos, cantidades, modificaciones, alergias, intolerancias y peticiones especiales antes de enviar la comanda.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r20"><span>Asegurarse de que lo servido corresponde con lo solicitado.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r21"><span>Recomendar platos, bebidas, postres, sugerencias y productos a potenciar, realizando una venta activa pero natural.</span></label></div><div class="checkgroup"><h3>6. CONTROL E INCIDENCIAS</h3><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r22"><span>Detectar y comunicar inmediatamente cualquier error, retraso, queja, reclamación o incidencia.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r23"><span>Informar al director de cualquier situación que no pueda resolver directamente y hacer seguimiento hasta su solución.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r24"><span>Comunicar al director cualquier equivocación, invitación o merma para que sea él quien la ejecute y registre.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r25"><span>Pedir apoyo cuando sea necesario y colaborar con el resto del equipo.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r26"><span>Mantener una actitud colaborativa y prestar apoyo a runners, otros rangos, cocina o cualquier compañero cuando sea necesario.</span></label></div><div class="checkgroup"><h3>7. CUENTAS Y CIERRE DEL RANGO</h3><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r27"><span>Revisar personalmente las cuentas antes de entregarlas y realizar correctamente el cobro.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r28"><span>Comprobar que no queda ninguna mesa pendiente de cerrar.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r29"><span>Dejar mesas, rango y material limpios, ordenados, repuestos y preparados para el siguiente servicio.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r30"><span>Comunicar cualquier falta de material, rotura, avería, incidencia o necesidad detectada durante el turno.</span></label></div><div class="checkgroup"><h3>INCIDENCIAS / OBSERVACIONES</h3><textarea id="rangoNotes" class="note" placeholder="Escribe aquí incidencias, pendientes o información para el siguiente turno..."></textarea></div><button class="m28-primary" onclick="rangoFinalize()">FINALIZAR CHECKLIST</button><button class="reset" onclick="rangoReset()">Reiniciar checklist</button><div class="foot">GRUPO MANDALA · CHECKLIST DEL JEFE DE RANGO</div></main></section><section class="screen manual" id="runner">
+<header><button class="back" onclick="goHome()">‹</button><div><b>Camarero / Runner</b><small>Manual de procedimientos</small></div></header>
+<main>
+<div class="intro"><p>El Camarero / Runner o Ayudante de Camarero forma parte activa del servicio de sala. Su función principal es llevar el producto, mantener el servicio ágil y ordenado, retirar, recoger y apoyar constantemente al jefe de rango y al resto del equipo.</p><p>Las funciones del camarero y del runner o ayudante son comunes salvo en dos responsabilidades específicas: la toma de comandas y el conocimiento exhaustivo de la carta. Cuando el director o responsable de turno lo determine, será exclusivamente el camarero quien tome la comanda siguiendo el procedimiento establecido; por ello, deberá mantener un conocimiento completo y actualizado de la carta.</p><p>El Camarero / Runner o Ayudante de Camarero deberá escuchar y seguir en todo momento las indicaciones del jefe de rango, director o responsable de turno, respetando la organización y las prioridades del servicio.</p></div>
+<div class="tools"><button onclick="allOpen('runner',true)">Abrir todo</button><button onclick="allOpen('runner',false)">Cerrar todo</button></div>
+<details class="proc"><summary>1. ENTRADA Y FICHAJE<span>＋</span></summary>
+    <div class="body"><ul><li>Llegar al puesto de trabajo preparado para comenzar el turno, correctamente uniformado y con la imagen personal adecuada.</li><li>Fichar la entrada inmediatamente al incorporarse al puesto de trabajo.</li><li>Registrar la hora de entrada en la hoja de registro de horas.</li><li>Registrar correctamente en la hoja de horas todas las pausas realizadas durante la jornada.</li><li>Una vez fichada la entrada, comenzar a trabajar directamente, evitando pérdidas de tiempo antes de iniciar las tareas.</li></ul></div></details>
+<details class="proc"><summary>2. PREPARACIÓN ANTES DEL SERVICIO<span>＋</span></summary>
+    <div class="body"><ul><li>Preparar, revisar y montar las mesas y zonas de servicio asignadas.</li><li>Comprobar limpieza, orden, vajilla, cubertería, cristalería, bandejas y material necesario.</li><li>Reponer estaciones y preparar todo lo necesario para el servicio.</li><li>Conocer la numeración de las mesas, así como dónde están situados todos los materiales y el producto del restaurante.</li><li>Comunicar cualquier falta, rotura o incidencia antes de comenzar el servicio.</li></ul></div></details>
+<details class="proc"><summary>3. SERVICIO Y ATENCIÓN AL CLIENTE<span>＋</span></summary>
+    <div class="body"><ul><li>Su función principal es llevar el producto a la mesa de forma correcta, rápida y ordenada, siempre con una sonrisa y buena actitud.</li><li>Conocer los platos y bebidas que se sirven y comprobar que llegan a la mesa correcta.</li><li>Mantener las mesas limpias, ordenadas y atendidas durante todo el servicio.</li><li>Retirar platos, vasos, botellas y material utilizado cuando corresponda.</li><li>Estar siempre atentos a las necesidades del cliente y del servicio.</li><li>Si un cliente realiza una petición o reclamación y no están autorizados en ese momento a tomar comandas, deberán avisar inmediatamente al camarero o jefe de rango que esté llevando esa mesa para que acuda a atender al cliente.</li><li>Nunca dejar una petición del cliente sin comunicar ni dar por hecho que otro compañero se encargará.</li><li>Comunicar inmediatamente cualquier error, retraso, queja o incidencia.</li><li>Seguir siempre las indicaciones del jefe de rango, director o responsable de turno.</li></ul></div></details>
+<details class="proc"><summary>4. TOMA DE COMANDAS<span>＋</span></summary>
+    <div class="body"><ul><li>La toma de comandas la realizará el camarero únicamente cuando el director o responsable de turno lo indique.</li><li>Cuando tenga que tomar una comanda deberá:</li><li>Tomarla personalmente en la mesa indicada.</li><li>Introducir correctamente en la PDA productos, cantidades, modificaciones y peticiones del cliente.</li><li>Registrar correctamente alergias, intolerancias y necesidades especiales.</li><li>Si una petición no aparece en la PDA, escribirla en el campo editable correspondiente.</li><li>Revisar siempre la comanda antes de enviarla.</li><li>Comprobar que la información llega correctamente a cocina y barra.</li><li>Comprobar posteriormente que lo servido corresponde con lo solicitado.</li><li>Ante cualquier duda, consultar al director o responsable de turno antes de enviar la comanda.</li></ul></div></details>
+<details class="proc"><summary>5. CONOCIMIENTO EXHAUSTIVO DE LA CARTA - EXCLUSIVO DEL CAMARERO<span>＋</span></summary>
+    <div class="body"><ul><li>Además de estar preparado para tomar comandas cuando el director o responsable de turno lo determine, el camarero deberá tener un conocimiento exhaustivo de la carta, al mismo nivel exigido al jefe de rango.</li><li>Conocer la carta, ingredientes y elaboraciones.</li><li>Conocer correctamente los alérgenos.</li><li>Conocer las sugerencias y productos fuera de carta.</li><li>Conocer los productos no disponibles.</li><li>Conocer los productos que la dirección quiera potenciar.</li><li>Estar preparado para resolver las dudas del cliente y, cuando no conozca una respuesta con seguridad, consultarla antes de informar.</li></ul></div></details>
+<details class="proc"><summary>6. FUNCIONES DEL CAMARERO / RUNNER O AYUDANTE DE CAMARERO<span>＋</span></summary>
+    <div class="body"><ul><li>Estar pendiente en todo momento del pase y de la barra: platos y bebidas, asegurándose de que todo el producto salga con rapidez y llegue correctamente a su mesa.</li><li>Mantener una comunicación constante tanto con los responsables de cocina en el pase como con los responsables de barra, siguiendo sus indicaciones para que cada plato y cada bebida lleguen a la mesa correspondiente.</li><li>Saber distinguir e identificar platos y bebidas con modificaciones o pedidos especiales, prestando especial atención a alergias, intolerancias y cualquier observación especial.</li><li>Ante cualquier duda sobre un plato o una bebida, confirmarlo con el responsable correspondiente antes de llevarlo a la mesa.</li><li>Al dejar los platos o bebidas en la mesa, preguntar siempre al cliente si está todo correcto o si falta alguna cosa.</li><li>Si el cliente comunica que falta algún plato, bebida, acompañamiento, cubierto, producto o cualquier otra cosa, avisar inmediatamente al jefe de rango o al responsable de ese rango.</li><li>No dar por terminado el servicio hasta comprobar que la mesa está correctamente atendida.</li><li>Apoyar constantemente al jefe de rango y al resto del equipo.</li><li>Ayudar al jefe de rango en el copeo de bebidas durante el servicio, manteniéndose pendiente de copas y vasos.</li><li>Anticiparse y reponer la bebida cuando corresponda, evitando que el cliente tenga que solicitarlo.</li><li>Retirar platos, vasos, botellas, cubiertos y material utilizado.</li><li>Preparar y remontar las mesas con rapidez.</li><li>Mantener estaciones y zonas de apoyo limpias, ordenadas y preparadas.</li><li>Reponer productos cuando el director o responsable lo requiera.</li><li>Revisar periódicamente durante el servicio la limpieza y el estado de los baños y, si fuera necesario, limpiarlos o comunicarlo inmediatamente para que se mantengan siempre en perfectas condiciones.</li><li>Estar atento a las necesidades de las mesas y actuar con iniciativa, respetando siempre las indicaciones del jefe de rango, director o responsable.</li><li>Comunicar faltas, errores, retrasos o cualquier incidencia que pueda afectar al servicio.</li></ul></div></details>
+<details class="proc"><summary>7. HABILIDADES Y ACTITUD DEL CAMARERO / RUNNER O AYUDANTE DE CAMARERO<span>＋</span></summary>
+    <div class="body"><ul><li>Rapidez y agilidad sin perder calidad ni cuidado en el servicio.</li><li>Capacidad de observación y anticipación.</li><li>Conocimiento de mesas, platos, bebidas y funcionamiento del servicio.</li><li>Orden, limpieza y capacidad para priorizar.</li><li>Buena comunicación y trabajo en equipo.</li><li>Mantener la calma y la profesionalidad en momentos de mucho trabajo.</li><li>Cuidar la imagen personal, higiene y uniformidad.</li><li>Mantener siempre una actitud amable y una sonrisa durante el servicio.</li><li>Tener iniciativa y estar pendiente de lo que hace falta, siguiendo siempre las indicaciones y prioridades marcadas por el jefe de rango, director o responsable.</li></ul></div></details>
+<details class="proc"><summary>8. REGISTRO DE HORAS Y PAUSAS<span>＋</span></summary>
+    <div class="body"><ul><li>Es obligatorio fichar correctamente en el programa y en el registro de horas la entrada y la salida.</li><li>Se deberán registrar también todas las pausas, incluidas las pausas para fumar, comer o cualquier otro tipo de descanso.</li><li>Cada trabajador es responsable de que sus horarios y pausas queden correctamente registrados.</li><li>Una vez fichada la entrada, comienza la jornada de trabajo. El trabajador deberá incorporarse inmediatamente a sus funciones, sin perder tiempo en asuntos personales u otras actividades ajenas al trabajo.</li><li>No se deberá fichar la salida hasta haber finalizado realmente el trabajo y haber recibido la indicación correspondiente del director o responsable de turno.</li></ul></div></details>
+<details class="proc"><summary>9. NINGÚN VIAJE EN BALDE<span>＋</span></summary>
+    <div class="body"><ul><li>Este es un principio fundamental para el Camarero / Runner o Ayudante de Camarero y debe cumplirse durante todo el servicio.</li><li>VIAJE DE IDA: SERVICIO.
+VIAJE DE VUELTA: RECOGIDA.</li><li>Siempre que se vaya hacia una mesa, aprovechar el desplazamiento para llevar platos, bebidas, cubiertos, material o cualquier elemento necesario.</li><li>Siempre que se vuelva, aprovechar para retirar platos, vasos, botellas, cubiertos, bandejas o material utilizado.</li><li>Antes de volver con las manos vacías, mirar alrededor y comprobar si hay algo que retirar, llevar o recoger.</li><li>Evitar desplazamientos innecesarios y trabajar observando el conjunto de la sala.</li><li>NINGÚN VIAJE DEBE HACERSE EN BALDE.</li></ul></div></details>
+<details class="proc"><summary>10. CIERRE DEL SERVICIO<span>＋</span></summary>
+    <div class="body"><ul><li>Retirar, limpiar, ordenar y reponer el material utilizado durante el servicio.</li><li>Dejar mesas, estaciones y zonas de trabajo perfectamente preparadas.</li><li>Limpiar y organizar todo aquello que indique el director o responsable de turno, incluyendo zonas comunes, suelos, baños, barra, mobiliario, cubiertos, vajilla, cristalería y materiales en general.</li><li>Colaborar en cualquier tarea de limpieza, orden, recogida y organización necesaria para dejar el restaurante correctamente preparado.</li><li>Comunicar faltas de material, roturas o incidencias detectadas.</li><li>El servicio no se considera finalizado hasta que el director o responsable de turno lo indique.</li></ul></div></details>
+<details class="proc"><summary>PRINCIPIO FINAL<span>＋</span></summary>
+    <div class="body"><ul><li>El Camarero / Runner o Ayudante de Camarero debe ser una persona activa, rápida y observadora. Su función principal es llevar el producto, retirar, recoger y apoyar constantemente el funcionamiento de la sala, siempre con una sonrisa y una actitud profesional.</li><li>Debe estar pendiente de las mesas, apoyar al jefe de rango y seguir en todo momento las indicaciones del jefe de rango, director o responsable de turno.</li><li>Si el cliente realiza una petición o reclamación que no pueda atender directamente, deberá avisar inmediatamente al camarero o jefe de rango responsable de esa mesa.</li><li>Cuando el director o responsable de turno lo determine, será exclusivamente el camarero quien tome las comandas siguiendo correctamente el procedimiento establecido. Para ello, deberá mantener un conocimiento exhaustivo y actualizado de la carta, ingredientes, elaboraciones, alérgenos, sugerencias, productos fuera de carta, productos no disponibles y aquellos que la dirección quiera potenciar.</li><li>NINGÚN VIAJE EN BALDE
+IDA PARA SERVICIO · VUELTA PARA RECOGIDA</li></ul></div></details>
+<div class="foot">GRUPO MANDALA · MANUALES Y PROCEDIMIENTOS</div>
+</main></section>
+<section class="screen manual" id="normas">
+<header><button class="back" onclick="goHome()">‹</button><div><b>Normas Generales</b><small>Convivencia y funcionamiento</small></div></header>
+<main>
+<div class="intro"><p>Estas normas son de aplicación general a todo el personal del Grupo Mandala, independientemente de su puesto, categoría o funciones, y tienen como objetivo establecer unas pautas comunes de convivencia y funcionamiento que garanticen un entorno de trabajo basado en el respeto, la responsabilidad, la seguridad, la profesionalidad y el trabajo en equipo.</p></div>
+<div class="tools"><button onclick="allOpen('normas',true)">Abrir todo</button><button onclick="allOpen('normas',false)">Cerrar todo</button></div>
+<details class="proc"><summary>1. PUNTUALIDAD, ASISTENCIA Y REGISTRO DE JORNADA<span>＋</span></summary><div class="body"><ul><li>Todo trabajador deberá cumplir el horario establecido y presentarse con tiempo suficiente para comenzar a trabajar a la hora indicada, correctamente uniformado y preparado.</li><li>Es obligatorio registrar correctamente la entrada, salida y todas las pausas o descansos. El fichaje es personal e intransferible y no podrá realizarse por otro compañero.</li><li>Las ausencias o retrasos deberán comunicarse al responsable lo antes posible y justificarse cuando corresponda.</li></ul></div></details>
+<details class="proc"><summary>2. UNIFORMIDAD, HIGIENE E IMAGEN PERSONAL<span>＋</span></summary><div class="body"><ul><li>El uniforme deberá utilizarse completo y mantenerse limpio, cuidado y en buenas condiciones.</li><li>Se deberá mantener una correcta higiene personal y una imagen adecuada al entorno profesional, evitando elementos que puedan resultar inadecuados para el trabajo o para la manipulación de alimentos.</li></ul></div></details>
+<details class="proc"><summary>3. RESPETO Y CONVIVENCIA<span>＋</span></summary><div class="body"><ul><li>Todos los trabajadores deberán mantener un trato educado, respetuoso y profesional con compañeros, responsables, clientes y cualquier persona relacionada con el establecimiento.</li><li>No se permitirán insultos, amenazas, humillaciones, intimidaciones, agresiones, discriminación, acoso ni comportamientos que perjudiquen la convivencia y el ambiente de trabajo.</li></ul></div></details>
+<details class="proc"><summary>4. TRABAJO EN EQUIPO<span>＋</span></summary><div class="body"><ul><li>Todo el personal deberá mantener una actitud colaborativa.</li><li>Cuando las necesidades del servicio lo requieran, se prestará apoyo a otros compañeros dentro de las funciones que puedan realizarse.</li><li>El buen funcionamiento del restaurante es responsabilidad del conjunto del equipo.</li></ul></div></details>
+<details class="proc"><summary>5. CUMPLIMIENTO DE LAS INSTRUCCIONES DE TRABAJO<span>＋</span></summary><div class="body"><ul><li>Los trabajadores deberán cumplir las instrucciones relacionadas con la organización y funcionamiento del establecimiento transmitidas por sus responsables, siempre dentro de sus funciones y obligaciones laborales.</li><li>Las dudas, desacuerdos o incidencias deberán comunicarse de manera respetuosa y por los canales correspondientes.</li></ul></div></details>
+<details class="proc"><summary>6. USO DEL TELÉFONO MÓVIL<span>＋</span></summary><div class="body"><ul><li>Durante la jornada laboral no se utilizará el teléfono móvil personal salvo por una necesidad justificada, emergencia o autorización del responsable.</li><li>Nunca deberá utilizarse de manera que interfiera en el trabajo, perjudique el servicio o se realice de forma inapropiada delante de los clientes.</li></ul></div></details>
+<details class="proc"><summary>7. PAUSAS, DESCANSOS Y SALIDAS<span>＋</span></summary><div class="body"><ul><li>Las pausas y descansos deberán realizarse de acuerdo con la organización del servicio y las indicaciones del responsable.</li><li>No se deberá abandonar el puesto de trabajo o el establecimiento durante la jornada sin conocimiento o autorización cuando esta sea necesaria.</li></ul></div></details>
+<details class="proc"><summary>8. ALCOHOL Y DROGAS<span>＋</span></summary><div class="body"><ul><li>Queda prohibido el consumo de alcohol y drogas dentro de los establecimientos antes, durante y después de la jornada laboral.</li><li>Una vez finalizado el turno, el trabajador no podrá permanecer en el establecimiento consumiendo alcohol, aunque ya haya fichado su salida.</li><li>Asimismo, no se podrá iniciar o desarrollar la jornada laboral bajo los efectos del alcohol o de cualquier sustancia que pueda afectar a la seguridad, al comportamiento profesional o al correcto desempeño del trabajo.</li></ul></div></details>
+<details class="proc"><summary>9. ORDEN, LIMPIEZA Y CUIDADO DEL ESTABLECIMIENTO<span>＋</span></summary><div class="body"><ul><li>Podrá considerarse incumplimiento el uso incorrecto, negligente o no autorizado de maquinaria, mobiliario, instalaciones, productos o cualquier otro material de la empresa, especialmente cuando pueda provocar daños, pérdidas, riesgos o perjudicar el normal funcionamiento del establecimiento.</li><li>La gravedad de la conducta se valorará según las circunstancias, la reiteración y los posibles perjuicios ocasionados.</li></ul></div></details>
+<details class="proc"><summary>10. SEGURIDAD E HIGIENE<span>＋</span></summary><div class="body"><ul><li>Todo el personal deberá cumplir las normas de higiene, seguridad alimentaria y prevención de riesgos establecidas.</li><li>Cualquier situación que pueda representar un riesgo para trabajadores, clientes o instalaciones deberá comunicarse inmediatamente al responsable.</li></ul></div></details>
+<details class="proc"><summary>11. COMPORTAMIENTO PROFESIONAL<span>＋</span></summary><div class="body"><ul><li>Durante la jornada se deberá mantener una actitud profesional, evitando discusiones, gritos, comportamientos inapropiados o cualquier actuación que pueda perjudicar el funcionamiento o la imagen del establecimiento.</li><li>El trato al cliente deberá ser siempre educado, cercano, respetuoso y profesional.</li></ul></div></details>
+<details class="proc"><summary>12. BUENA FE Y RESPONSABILIDAD<span>＋</span></summary><div class="body"><ul><li>Todo trabajador deberá actuar con responsabilidad y honestidad.</li><li>No se permitirán apropiaciones de dinero, productos o bienes, manipulaciones indebidas de cobros o registros, consumos no autorizados, falsificación de información o cualquier actuación que suponga abuso de confianza.</li></ul></div></details>
+<details class="proc"><summary>13. CONFIDENCIALIDAD Y PRIVACIDAD<span>＋</span></summary><div class="body"><ul><li>La información interna de la empresa, así como aquella relacionada con trabajadores, clientes, funcionamiento, documentación o datos a los que se tenga acceso por razón del trabajo, deberá tratarse con responsabilidad y confidencialidad.</li></ul></div></details>
+<details class="proc"><summary>14. DESCUENTOS, CONSUMOS E INVITACIONES<span>＋</span></summary><div class="body"><ul><li>Queda prohibido utilizar descuentos, invitaciones o cualquier otro beneficio de empleado de forma indebida o aplicarlos a amigos, familiares o terceras personas cuando no corresponda.</li><li>Si un trabajador desea invitar a un familiar o amigo, deberá hacerlo a título personal y asumir el coste correspondiente.</li><li>El uso indebido de descuentos, consumos o invitaciones podrá dar lugar a las medidas disciplinarias que correspondan y, cuando proceda, a la retirada de dichos beneficios.</li></ul></div></details>
+<details class="proc"><summary>15. FAMILIARES, AMIGOS Y VISITAS PERSONALES<span>＋</span></summary><div class="body"><ul><li>Durante la jornada laboral, los trabajadores no podrán utilizar el establecimiento para recibir o atender visitas personales de familiares o amigos.</li><li>Cuando un familiar o amigo de un trabajador acuda al establecimiento como cliente, deberá recibir el mismo trato y seguir el mismo procedimiento que cualquier otro cliente.</li><li>El trabajador no podrá hacerse cargo directamente de su servicio: no deberá tomarle la comanda, servirle, gestionar su mesa, cobrarle la cuenta, realizar invitaciones ni aplicar beneficios que no correspondan.</li><li>Asimismo, durante la jornada laboral deberán evitarse conversaciones o permanencias prolongadas con familiares o amigos que interfieran en las funciones del trabajador o en el correcto desarrollo del servicio.</li></ul></div></details>
+<details class="proc"><summary>16. FALTAS LEVES<span>＋</span></summary><div class="body"><ul><li>Podrán considerarse faltas leves aquellos incumplimientos de menor gravedad relacionados, entre otros, con retrasos, descuidos, falta de orden, incumplimientos ocasionales de las normas internas, uso no autorizado del móvil o comportamientos que afecten ligeramente al normal funcionamiento del trabajo, teniendo siempre en cuenta las circunstancias concretas y su posible reiteración.</li></ul></div></details>
+<details class="proc"><summary>17. FALTAS GRAVES<span>＋</span></summary><div class="body"><ul><li>Podrán considerarse faltas graves los incumplimientos de mayor importancia o la reiteración de determinadas conductas leves.</li><li>Entre ellas pueden encontrarse ausencias injustificadas, incumplimientos relevantes del horario o registro de jornada, desobediencia, abandono injustificado del puesto, negligencias importantes, faltas de respeto o incumplimientos que provoquen perjuicios al servicio, a compañeros, clientes o a la empresa.</li></ul></div></details>
+<details class="proc"><summary>18. FALTAS MUY GRAVES<span>＋</span></summary><div class="body"><ul><li>Se considerarán de especial gravedad aquellas conductas que supongan un incumplimiento grave de las obligaciones laborales.</li><li>Podrán incluir, según las circunstancias, fraude, hurto, robo, abuso de confianza, agresiones, acoso, discriminación, amenazas graves, desobediencia grave, daños intencionados, incumplimientos graves de seguridad o conductas relacionadas con alcohol o drogas que afecten gravemente al trabajo o a la seguridad.</li></ul></div></details>
+<details class="proc"><summary>19. RÉGIMEN DISCIPLINARIO<span>＋</span></summary><div class="body"><ul><li>El incumplimiento de estas normas podrá dar lugar a las medidas disciplinarias que correspondan en función de la naturaleza de los hechos, su gravedad, reiteración y circunstancias.</li><li>La calificación de una conducta como falta leve, grave o muy grave y la sanción que, en su caso, corresponda se realizará conforme a la normativa laboral y al convenio colectivo aplicable.</li></ul></div></details>
+<details class="proc"><summary>20. CONOCIMIENTO DE LAS NORMAS<span>＋</span></summary><div class="body"><ul><li>Todo trabajador deberá conocer y respetar estas normas como parte de sus obligaciones profesionales.</li><li>Su finalidad es mantener un entorno de trabajo basado en el respeto, la responsabilidad, la seguridad, la profesionalidad y el trabajo en equipo.</li></ul></div></details>
+<div class="intro"><p><b>RESPETO · RESPONSABILIDAD · PROFESIONALIDAD · TRABAJO EN EQUIPO</b></p><p>FECHA: __________________________________________</p><p>NOMBRE DEL TRABAJADOR/A: __________________________________________</p><p>FIRMA: __________________________________________</p></div>
+<div class="foot">GRUPO MANDALA · NORMAS GENERALES DE CONVIVENCIA Y FUNCIONAMIENTO</div>
+</main></section>
+<script>
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
+function goHome(){show('home')}
+function allOpen(id,v){document.querySelectorAll('#'+id+' details').forEach(d=>d.open=v)}
+function saveChecklist(){document.querySelectorAll('.dircheck').forEach(c=>localStorage.setItem('mandala_'+c.dataset.k,c.checked?'1':'0'));localStorage.setItem('mandala_dirNotes',document.getElementById('dirNotes')?.value||'');updateProgress()}
+function loadChecklist(){document.querySelectorAll('.dircheck').forEach(c=>{c.checked=localStorage.getItem('mandala_'+c.dataset.k)==='1';c.addEventListener('change',saveChecklist)});let n=document.getElementById('dirNotes');if(n){n.value=localStorage.getItem('mandala_dirNotes')||'';n.addEventListener('input',saveChecklist)}updateProgress()}
+function updateProgress(){let a=[...document.querySelectorAll('.dircheck')],done=a.filter(x=>x.checked).length;let t=document.getElementById('progText'),b=document.getElementById('progBar');if(t)t.textContent=done+' de '+a.length+' tareas completadas';if(b)b.style.width=(a.length?done/a.length*100:0)+'%'}
+function resetChecklist(){if(confirm('¿Quieres desmarcar todas las tareas y borrar las observaciones?')){document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);let n=document.getElementById('dirNotes');if(n)n.value='';saveChecklist()}}
+window.addEventListener('DOMContentLoaded',()=>{loadChecklist();if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{})});
+</script></body></html>
+<style>
+.m28-panel{background:#fff;border:1px solid #ded5c7;border-radius:18px;padding:18px;margin:12px 0}
+.m28-row{margin:14px 0}.m28-row label{display:block;font-weight:750;margin-bottom:7px}
+.m28-row select,.m28-row input{width:100%;font:inherit;padding:14px;border:1px solid #ded5c7;border-radius:12px;background:#fff}
+.m28-primary,.m28-secondary{width:100%;font:inherit;font-weight:750;border-radius:14px;padding:14px;margin-top:10px}
+.m28-primary{border:0;background:#7b6b52;color:#fff}.m28-secondary{border:1px solid #ded5c7;background:#fff;color:#202020}
+.m28-badge{display:inline-block;padding:5px 9px;border-radius:20px;background:#eee7dc;font-size:12px;margin:3px 3px 3px 0}
+.m28-list{background:#fff;border:1px solid #ded5c7;border-radius:16px;padding:14px;margin:10px 0}
+.m28-muted{color:#777168;font-size:14px;line-height:1.45}
+.m28-ok{font-weight:750}
+</style>
+
+<section class="screen" id="directorAccess">
+<header><button class="back" onclick="show('director')">‹</button><div><b>Inicio de checklist</b><small>Identificación del turno</small></div></header>
+<main>
+<div class="m28-panel">
+<div class="m28-row"><label>Restaurante</label>
+<select id="m28Restaurant" onchange="m28SyncDirector()">
+<option value="">Selecciona restaurante</option>
+<option>Farini Fustera</option>
+<option>Mandala Port</option>
+<option>Rull</option>
+<option>Mandala Fustera</option>
+<option>Farini Benissa</option>
+</select></div>
+<div class="m28-row"><label>Director</label><select id="m28Director"><option value="">Selecciona primero el restaurante</option></select></div>
+<button class="m28-primary" onclick="m28Start()">COMENZAR CHECKLIST</button>
+</div>
+<div class="m28-panel">
+<button class="m28-secondary" onclick="m28OpenAccess('directorAccess')">GERENCIA / SUPERVISIÓN</button>
+</div>
+</main></section>
+
+<section class="screen" id="m28Access">
+<header><button class="back" onclick="show(m28AccessReturn)">‹</button><div><b>Gerencia / Supervisión</b><small>Acceso restringido</small></div></header>
+<main><div class="m28-panel">
+<div class="m28-row"><label>Usuario</label>
+<select id="m28User"><option>Gustavo Vinazza</option><option>Felipe Ezquerdo</option><option>Vicent Gimenez</option></select></div>
+<div class="m28-row"><label>Contraseña</label><input id="m28Pin" type="password" inputmode="numeric" placeholder="Contraseña"></div>
+<button class="m28-primary" onclick="m28Login()">ENTRAR</button>
+</div></main></section>
+
+<section class="screen" id="m28Panel">
+<header><button class="back" onclick="show(m28AccessReturn)">‹</button><div><b>Panel Mandala</b><small id="m28Role"></small></div></header>
+<main>
+<div class="m28-panel"><b>Restaurantes</b><div style="margin-top:10px">
+<span class="m28-badge">Farini Fustera</span><span class="m28-badge">Mandala Port</span><span class="m28-badge">Rull</span><span class="m28-badge">Mandala Fustera</span><span class="m28-badge">Farini Benissa</span>
+</div></div>
+<div id="m28Live"></div><div id="m28History"></div>
+<div id="m28Admin" class="m28-panel" style="display:none">
+<b>Administración</b>
+<p class="m28-muted">Gerencia puede modificar la asignación de directores en este dispositivo.</p>
+<div id="m28Assignments"></div>
+<button class="m28-secondary" onclick="m28ChangePin()">CAMBIAR CONTRASEÑA DE GERENCIA</button>
+</div>
+<p class="m28-muted">Las checklists de Director y Jefe de Rango están sincronizadas online para su consulta desde Gerencia / Supervisión.</p>
+</main></section>
+
+<script>
+const M28_DEFAULTS={
+"Farini Fustera":"Stefano Burci",
+"Mandala Port":"Ezequiel Robuschi",
+"Rull":"Alexander Alzate",
+"Mandala Fustera":"Pedro Rodríguez",
+"Farini Benissa":"Eduardo Ivars"
+};
+function m28Map(){try{return {...M28_DEFAULTS,...JSON.parse(localStorage.getItem('m28_assignments')||'{}')}}catch(e){return {...M28_DEFAULTS}}}
+function m28SyncDirector(){
+ const r=document.getElementById('m28Restaurant').value,d=document.getElementById('m28Director'),m=m28Map();
+ d.innerHTML=r?'<option>'+m[r]+'</option>':'<option value="">Selecciona primero el restaurante</option>';
+}
+function m28Key(){return 'm28_'+(sessionStorage.getItem('m28_restaurant')||'general').replace(/\s+/g,'_')+'_'}
+function m28Start(){
+ const r=document.getElementById('m28Restaurant').value,d=document.getElementById('m28Director').value;
+ if(!r||!d){alert('Selecciona el restaurante y el director.');return}
+ sessionStorage.setItem('m28_restaurant',r);sessionStorage.setItem('m28_director',d);
+ const sub=document.querySelector('#directorChecklist header small'); if(sub)sub.textContent=r+' · '+d;
+ m28Load();show('directorChecklist');
+}
+function m28Save(){
+ const k=m28Key();
+ document.querySelectorAll('.dircheck').forEach(c=>localStorage.setItem(k+c.dataset.k,c.checked?'1':'0'));
+ const n=document.getElementById('dirNotes');if(n)localStorage.setItem(k+'notes',n.value||'');
+ updateProgress();
+}
+function m28Load(){
+ const k=m28Key();
+ document.querySelectorAll('.dircheck').forEach(c=>{c.checked=localStorage.getItem(k+c.dataset.k)==='1';c.onchange=m28Save});
+ const n=document.getElementById('dirNotes');if(n){n.value=localStorage.getItem(k+'notes')||'';n.oninput=m28Save}
+ updateProgress();m28AddFinalize();
+}
+function m28AddFinalize(){
+ if(document.getElementById('m28Finalize'))return;
+ const reset=document.querySelector('#directorChecklist .reset');if(!reset)return;
+ const b=document.createElement('button');b.id='m28Finalize';b.className='m28-primary';b.textContent='FINALIZAR CHECKLIST';b.onclick=m28Finalize;
+ reset.parentNode.insertBefore(b,reset);
+}
+function m28Finalize(){
+ const a=[...document.querySelectorAll('.dircheck')];
+ if(!a.length||a.some(x=>!x.checked)){alert('Para finalizar la checklist deben estar completadas las 32 tareas.');return}
+ const r=sessionStorage.getItem('m28_restaurant'),d=sessionStorage.getItem('m28_director');
+ if(!confirm('¿Finalizar la checklist de '+r+'?'))return;
+ const notes=document.getElementById('dirNotes')?.value||'';
+ let h=[];try{h=JSON.parse(localStorage.getItem('m28_history')||'[]')}catch(e){}
+ h.unshift({restaurant:r,director:d,time:new Date().toLocaleString('es-ES'),notes:notes,status:'Finalizada'});
+ localStorage.setItem('m28_history',JSON.stringify(h.slice(0,100)));
+ alert('Checklist finalizada y registrada en este dispositivo.');
+ show('directorAccess');
+}
+function m28Login(){
+ const u=document.getElementById('m28User').value,p=document.getElementById('m28Pin').value;
+ const isAdmin=u==='Felipe Ezquerdo'||u==='Vicent Gimenez';
+ const pin=isAdmin?(localStorage.getItem('m28_admin_pin')||'2026'):'2026';
+ if(p!==pin){alert('Contraseña incorrecta.');return}
+ document.getElementById('m28Role').textContent=u+(isAdmin?' · Administración':' · Supervisión');
+ document.getElementById('m28Admin').style.display=isAdmin?'block':'none';
+ m28RenderHistory();if(isAdmin)m28RenderAssignments();show('m28Panel');
+}
+function m28RenderHistory(){
+ let h=[];try{h=JSON.parse(localStorage.getItem('m28_history')||'[]')}catch(e){}
+ const box=document.getElementById('m28History');
+ box.innerHTML='<div class="m28-panel"><b>Checklists finalizadas</b><p class="m28-muted">'+(h.length?'Registros guardados en este dispositivo.':'Todavía no hay checklists finalizadas en este dispositivo.')+'</p></div>';
+ h.forEach(x=>{const d=document.createElement('div');d.className='m28-list';d.innerHTML='<div class="m28-ok"></div><div class="m28-muted"></div>';d.children[0].textContent=x.restaurant+' · '+x.director;d.children[1].textContent=x.time+' · '+x.status+(x.notes?' · Observaciones: '+x.notes:'');box.appendChild(d)});
+}
+function m28RenderAssignments(){
+ const m=m28Map(),box=document.getElementById('m28Assignments');box.innerHTML='';
+ Object.keys(M28_DEFAULTS).forEach(r=>{const row=document.createElement('div');row.className='m28-row';const lab=document.createElement('label');lab.textContent=r;const inp=document.createElement('input');inp.value=m[r];inp.dataset.r=r;row.append(lab,inp);box.appendChild(row)});
+ const b=document.createElement('button');b.className='m28-secondary';b.textContent='GUARDAR DIRECTORES';b.onclick=()=>{let o={};box.querySelectorAll('input').forEach(i=>o[i.dataset.r]=i.value.trim()||M28_DEFAULTS[i.dataset.r]);localStorage.setItem('m28_assignments',JSON.stringify(o));alert('Directores actualizados en este dispositivo.');m28SyncDirector()};box.appendChild(b);
+}
+function m28ChangePin(){
+ const p=prompt('Nueva contraseña de Gerencia:');if(p&&p.trim()){localStorage.setItem('m28_admin_pin',p.trim());alert('Contraseña actualizada en este dispositivo.')}
+}
+(function(){
+ const btn=[...document.querySelectorAll('#director .hubcard')].find(b=>b.textContent.includes('CHECKLIST DEL DIRECTOR'));
+ if(btn)btn.onclick=()=>show('directorAccess');
+ const oldSave=window.saveChecklist;window.saveChecklist=m28Save;
+ const oldLoad=window.loadChecklist;window.loadChecklist=function(){};
+ const oldReset=window.resetChecklist;window.resetChecklist=function(){
+   if(confirm('¿Quieres desmarcar todas las tareas y borrar las observaciones de este restaurante?')){
+     document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);
+     const n=document.getElementById('dirNotes');if(n)n.value='';m28Save();
+   }
+ };
+})();
+</script>
+
+<script>
+function rangoKey(){const r=(sessionStorage.getItem('rango_restaurant')||'general').replace(/\s+/g,'_');const n=(sessionStorage.getItem('rango_name')||'jefe').trim().replace(/\s+/g,'_');return 'mandala_rango_'+r+'_'+n+'_';}
+function rangoStart(){const r=document.getElementById('rangoRestaurant').value,n=document.getElementById('rangoName').value.trim();if(!r||!n){alert('Selecciona el restaurante y escribe el nombre del jefe de rango.');return}sessionStorage.setItem('rango_restaurant',r);sessionStorage.setItem('rango_name',n);document.getElementById('rangoSub').textContent=r+' · '+n;rangoLoad();show('rangoChecklist');}
+function rangoSave(){const k=rangoKey();document.querySelectorAll('.rangocheck').forEach(c=>localStorage.setItem(k+c.dataset.k,c.checked?'1':'0'));localStorage.setItem(k+'notes',document.getElementById('rangoNotes').value||'');rangoProgress();}
+function rangoLoad(){const k=rangoKey();document.querySelectorAll('.rangocheck').forEach(c=>{c.checked=localStorage.getItem(k+c.dataset.k)==='1';c.onchange=rangoSave});const n=document.getElementById('rangoNotes');n.value=localStorage.getItem(k+'notes')||'';n.oninput=rangoSave;rangoProgress();}
+function rangoProgress(){const a=[...document.querySelectorAll('.rangocheck')],done=a.filter(x=>x.checked).length;document.getElementById('rangoProgText').textContent=done+' de '+a.length+' tareas completadas';document.getElementById('rangoProgBar').style.width=(a.length?done/a.length*100:0)+'%';}
+function rangoReset(){if(confirm('¿Quieres desmarcar todas las tareas y borrar las observaciones de este jefe de rango?')){document.querySelectorAll('.rangocheck').forEach(c=>c.checked=false);document.getElementById('rangoNotes').value='';rangoSave();}}
+function rangoFinalize(){const a=[...document.querySelectorAll('.rangocheck')];if(!a.length||a.some(x=>!x.checked)){alert('Para finalizar la checklist deben estar completadas las 30 tareas.');return}const r=sessionStorage.getItem('rango_restaurant'),n=sessionStorage.getItem('rango_name');if(!confirm('¿Finalizar la checklist de '+n+' en '+r+'?'))return;const notes=document.getElementById('rangoNotes').value||'';let h=[];try{h=JSON.parse(localStorage.getItem('rango_history')||'[]')}catch(e){}h.unshift({restaurant:r,name:n,time:new Date().toLocaleString('es-ES'),notes:notes,status:'Finalizada'});localStorage.setItem('rango_history',JSON.stringify(h.slice(0,100)));alert('Checklist finalizada y registrada en este dispositivo.');show('rangoAccess');}
+</script>
+
+<script>
+const SB_URL='https://hjuxmpkcxyzdudeirrwr.supabase.co/rest/v1/', SB_KEY='sb_publishable_TyFTWuFnxvlz3sDRF7f6lw_dZcFTnYe';
+let m28AccessReturn='directorAccess', cloudTimer=null, cloudIds={director:null,rango:null};
+function m28OpenAccess(back){m28AccessReturn=back||'directorAccess';show('m28Access')}
+async function sb(path,opt={}){
+ const h=Object.assign({'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'},opt.headers||{});
+ const r=await fetch(SB_URL+path,Object.assign({},opt,{headers:h})); if(!r.ok)throw Error(await r.text());
+ const t=await r.text(); return t?JSON.parse(t):null;
+}
+function state(sel){let o={};document.querySelectorAll(sel).forEach(c=>o[c.dataset.k]=c.checked);return o}
+function done(sel){return [...document.querySelectorAll(sel)].filter(c=>c.checked).length}
+async function ensure(tipo,rest,responsable,total){
+ if(cloudIds[tipo])return cloudIds[tipo];
+ let q='checklists?select=id&tipo=eq.'+encodeURIComponent(tipo)+'&restaurante=eq.'+encodeURIComponent(rest)+'&responsable=eq.'+encodeURIComponent(responsable)+'&estado=eq.activa&order=iniciada_en.desc&limit=1';
+ let a=await sb(q); if(a&&a[0])return cloudIds[tipo]=a[0].id;
+ a=await sb('checklists',{method:'POST',headers:{Prefer:'return=representation'},body:JSON.stringify({tipo:tipo,restaurante:rest,responsable:responsable,estado:'activa',tareas:{},total_tareas:total,tareas_completadas:0,observaciones:''})});
+ return cloudIds[tipo]=a[0].id;
+}
+async function sync(tipo,sel,note,rest,responsable){
+ try{let total=document.querySelectorAll(sel).length,id=await ensure(tipo,rest,responsable,total);
+ await sb('checklists?id=eq.'+id,{method:'PATCH',body:JSON.stringify({tareas:state(sel),total_tareas:total,tareas_completadas:done(sel),observaciones:document.getElementById(note)?.value||'',actualizada_en:new Date().toISOString()})})
+ }catch(e){console.error(e)}
+}
+async function finish(tipo,sel,note,rest,responsable){
+ try{let total=document.querySelectorAll(sel).length,id=await ensure(tipo,rest,responsable,total);
+ await sb('checklists?id=eq.'+id,{method:'PATCH',body:JSON.stringify({tareas:state(sel),total_tareas:total,tareas_completadas:done(sel),observaciones:document.getElementById(note)?.value||'',estado:'finalizada',actualizada_en:new Date().toISOString(),finalizada_en:new Date().toISOString()})});cloudIds[tipo]=null;return true
+ }catch(e){alert('No se ha podido sincronizar con Supabase.');return false}
+}
+function esc(v){let d=document.createElement('div');d.textContent=v??'';return d.innerHTML}
+async function live(){
+ let L=document.getElementById('m28Live'),H=document.getElementById('m28History');if(!L||!H)return;
+ try{let a=await sb('checklists?select=*&order=iniciada_en.desc&limit=100'),act=a.filter(x=>x.estado==='activa'),fin=a.filter(x=>x.estado==='finalizada');
+ L.innerHTML='<div class="m28-panel"><b>Checklists activas · tiempo real</b><p class="m28-muted">Actualización automática cada 3 segundos.</p></div>';
+ act.forEach(x=>{let pc=x.total_tareas?Math.round(x.tareas_completadas*100/x.total_tareas):0,d=document.createElement('div');d.className='m28-list';d.innerHTML='<b>'+esc(x.tipo==='director'?'Director':'Jefe de Rango')+' · '+esc(x.restaurante)+'</b><div class="m28-muted">'+esc(x.responsable)+' · '+x.tareas_completadas+' de '+x.total_tareas+' tareas · '+pc+'%</div>';L.appendChild(d)});
+ H.innerHTML='<div class="m28-panel"><b>Checklists finalizadas</b></div>';fin.forEach(x=>{let d=document.createElement('div');d.className='m28-list';d.innerHTML='<b>'+esc(x.tipo==='director'?'Director':'Jefe de Rango')+' · '+esc(x.restaurante)+' · '+esc(x.responsable)+'</b><div class="m28-muted">'+new Date(x.finalizada_en||x.actualizada_en).toLocaleString('es-ES')+'</div>';H.appendChild(d)})
+ }catch(e){L.innerHTML='<div class="m28-panel"><b>Sin conexión con Supabase</b></div>'}
+}
+const oldMS=m28Save;m28Save=function(){oldMS();let r=sessionStorage.getItem('m28_restaurant'),n=sessionStorage.getItem('m28_director');if(r&&n)sync('director','.dircheck','dirNotes',r,n)};
+const oldRS=rangoSave;rangoSave=function(){oldRS();let r=sessionStorage.getItem('rango_restaurant'),n=sessionStorage.getItem('rango_name');if(r&&n)sync('rango','.rangocheck','rangoNotes',r,n)};
+const oldMStart=m28Start;m28Start=async function(){let r=m28Restaurant.value,n=m28Director.value;if(!r||!n)return oldMStart();cloudIds.director=null;await ensure('director',r,n,document.querySelectorAll('.dircheck').length);oldMStart()};
+const oldRStart=rangoStart;rangoStart=async function(){let r=rangoRestaurant.value,n=rangoName.value.trim();if(!r||!n)return oldRStart();cloudIds.rango=null;await ensure('rango',r,n,document.querySelectorAll('.rangocheck').length);oldRStart()};
+m28Finalize=async function(){let a=[...document.querySelectorAll('.dircheck')];if(a.some(x=>!x.checked))return alert('Para finalizar la checklist deben estar completadas las 32 tareas.');let r=sessionStorage.getItem('m28_restaurant'),n=sessionStorage.getItem('m28_director');if(confirm('¿Finalizar la checklist de '+r+'?')&&await finish('director','.dircheck','dirNotes',r,n)){alert('Checklist finalizada y sincronizada.');show('directorAccess')}};
+rangoFinalize=async function(){let a=[...document.querySelectorAll('.rangocheck')];if(a.some(x=>!x.checked))return alert('Para finalizar la checklist deben estar completadas las 30 tareas.');let r=sessionStorage.getItem('rango_restaurant'),n=sessionStorage.getItem('rango_name');if(confirm('¿Finalizar la checklist de '+n+' en '+r+'?')&&await finish('rango','.rangocheck','rangoNotes',r,n)){alert('Checklist finalizada y sincronizada.');show('rangoAccess')}};
+const oldLogin=m28Login;m28Login=function(){oldLogin();if(document.getElementById('m28Panel').classList.contains('active')){live();clearInterval(cloudTimer);cloudTimer=setInterval(live,3000)}};
+</script>
+
+
+<script>
+/* Seguridad de sesión de Gerencia/Supervisión:
+   al salir del panel se limpian usuario, contraseña y datos de identificación del turno. */
+function m28ClearAccess(){
+  const u=document.getElementById('m28User');
+  const p=document.getElementById('m28Pin');
+  if(u)u.selectedIndex=0;
+  if(p)p.value='';
+}
+function mandalaClearTurnIdentity(){
+  sessionStorage.removeItem('m28_restaurant');
+  sessionStorage.removeItem('m28_director');
+  sessionStorage.removeItem('rango_restaurant');
+  sessionStorage.removeItem('rango_name');
+  const rr=document.getElementById('m28Restaurant');
+  const rd=document.getElementById('m28Director');
+  const jr=document.getElementById('rangoRestaurant');
+  const jn=document.getElementById('rangoName');
+  if(rr)rr.value='';
+  if(rd)rd.innerHTML='<option value="">Selecciona primero el restaurante</option>';
+  if(jr)jr.value='';
+  if(jn)jn.value='';
+}
+const _secureShow=show;
+show=function(id){
+  const leavingPanel=document.getElementById('m28Panel')?.classList.contains('active') && id!=='m28Panel';
+  _secureShow(id);
+  if(leavingPanel){m28ClearAccess();mandalaClearTurnIdentity();}
+  if(id==='m28Access')m28ClearAccess();
+};
+const _secureDirReset=resetChecklist;
+resetChecklist=function(){
+  _secureDirReset();
+  mandalaClearTurnIdentity();
+};
+const _secureRangoReset=rangoReset;
+rangoReset=function(){
+  _secureRangoReset();
+  mandalaClearTurnIdentity();
+};
+</script>
+
+
+<script>
+(function(){
+ function creds(){let u=document.getElementById('m28User'),p=document.getElementById('m28Pin');if(u){u.value='';u.selectedIndex=-1}if(p)p.value=''}
+ function dirid(){sessionStorage.removeItem('m28_restaurant');sessionStorage.removeItem('m28_director');let r=document.getElementById('m28Restaurant'),d=document.getElementById('m28Director');if(r)r.value='';if(d)d.innerHTML='<option value="">Selecciona primero el restaurante</option>'}
+ function ranid(){sessionStorage.removeItem('rango_restaurant');sessionStorage.removeItem('rango_name');let r=document.getElementById('rangoRestaurant'),n=document.getElementById('rangoName');if(r)r.value='';if(n)n.value=''}
+ let op=window.m28OpenAccess;window.m28OpenAccess=function(back){creds();op(back);setTimeout(creds,0)};
+ let lg=window.m28Login;window.m28Login=function(){let u=document.getElementById('m28User')?.value||'';lg();if(document.getElementById('m28Panel')?.classList.contains('active'))creds();else{let p=document.getElementById('m28Pin');if(p)p.value=''}};
+ window.resetChecklist=function(){if(confirm('¿Quieres desmarcar todas las tareas y borrar las observaciones de este restaurante?')){document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);let n=document.getElementById('dirNotes');if(n)n.value='';m28Save();dirid();show('directorAccess')}};
+ window.rangoReset=function(){if(confirm('¿Quieres desmarcar todas las tareas y borrar las observaciones de este jefe de rango?')){document.querySelectorAll('.rangocheck').forEach(c=>c.checked=false);let n=document.getElementById('rangoNotes');if(n)n.value='';rangoSave();ranid();show('rangoAccess')}};
+ let sh=window.show;window.show=function(id){let leaving=document.getElementById('m28Panel')?.classList.contains('active')&&id!=='m28Panel';sh(id);if(leaving)creds();if(id==='m28Access')creds()};
+ addEventListener('pageshow',creds);addEventListener('DOMContentLoaded',creds);
+})();
+</script>
+
+
+<script>
+/* V8.1: Reiniciar elimina también la checklist activa de Supabase */
+async function cloudDeleteActive(tipo,rest,responsable){
+  try{
+    const q='checklists?tipo=eq.'+encodeURIComponent(tipo)
+      +'&restaurante=eq.'+encodeURIComponent(rest)
+      +'&responsable=eq.'+encodeURIComponent(responsable)
+      +'&estado=eq.activa';
+    await sb(q,{method:'DELETE',headers:{Prefer:'return=minimal'}});
+    if(window.cloudIds) cloudIds[tipo]=null;
+    return true;
+  }catch(e){
+    console.error(e);
+    alert('No se ha podido borrar la checklist activa de Supabase.');
+    return false;
+  }
+}
+window.resetChecklist=async function(){
+  if(!confirm('¿Quieres reiniciar esta checklist? Se borrará también de Gerencia / Supervisión.'))return;
+  const r=sessionStorage.getItem('m28_restaurant')||'', n=sessionStorage.getItem('m28_director')||'';
+  if(r&&n && !(await cloudDeleteActive('director',r,n)))return;
+  document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);
+  const notes=document.getElementById('dirNotes');if(notes)notes.value='';
+  if(r){const k='m28_'+r.replace(/\s+/g,'_')+'_';document.querySelectorAll('.dircheck').forEach(c=>localStorage.removeItem(k+c.dataset.k));localStorage.removeItem(k+'notes')}
+  sessionStorage.removeItem('m28_restaurant');sessionStorage.removeItem('m28_director');
+  const rr=document.getElementById('m28Restaurant'),dd=document.getElementById('m28Director');
+  if(rr)rr.value='';if(dd)dd.innerHTML='<option value="">Selecciona primero el restaurante</option>';
+  updateProgress();show('directorAccess');
+};
+window.rangoReset=async function(){
+  if(!confirm('¿Quieres reiniciar esta checklist? Se borrará también de Gerencia / Supervisión.'))return;
+  const r=sessionStorage.getItem('rango_restaurant')||'', n=sessionStorage.getItem('rango_name')||'';
+  if(r&&n && !(await cloudDeleteActive('rango',r,n)))return;
+  document.querySelectorAll('.rangocheck').forEach(c=>c.checked=false);
+  const notes=document.getElementById('rangoNotes');if(notes)notes.value='';
+  if(r&&n){const k='mandala_rango_'+r.replace(/\s+/g,'_')+'_'+n.trim().replace(/\s+/g,'_')+'_';document.querySelectorAll('.rangocheck').forEach(c=>localStorage.removeItem(k+c.dataset.k));localStorage.removeItem(k+'notes')}
+  sessionStorage.removeItem('rango_restaurant');sessionStorage.removeItem('rango_name');
+  const rr=document.getElementById('rangoRestaurant'),nn=document.getElementById('rangoName');
+  if(rr)rr.value='';if(nn)nn.value='';
+  rangoProgress();show('rangoAccess');
+};
+</script>
