@@ -25,7 +25,14 @@ main{max-width:900px;margin:auto;padding:16px 15px 45px}.intro{background:white;
 
 .hubcards{display:grid;gap:14px;margin-top:14px}.hubcard{border:1px solid var(--line);background:#fff;border-radius:20px;padding:24px;text-align:left;font:inherit;box-shadow:0 5px 18px #0000000b}.hubcard b{font-size:20px;display:block;margin-bottom:6px}.hubcard small{font-size:15px;color:var(--muted)}
 .checkgroup{background:#fff;border:1px solid var(--line);border-radius:17px;margin:12px 0;padding:16px}.checkgroup h3{margin:0 0 10px;font-size:18px}.checkitem{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid #eee7dc;font-size:16px;line-height:1.4}.checkitem:first-of-type{border-top:0}.checkitem input{width:24px;height:24px;flex:0 0 auto;accent-color:#7b6b52}.progress{height:12px;background:#e8e1d7;border-radius:20px;overflow:hidden;margin:10px 0}.progress>div{height:100%;background:#7b6b52;width:0}.note{width:100%;min-height:110px;border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit;background:#fff}.reset{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 14px}.installhint{font-size:13px;color:var(--muted);margin-top:10px}
-</style></head><body>
+</style>
+<style>
+.m28-traffic-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
+.m28-traffic-row:last-child{border-bottom:0}.m28-light{width:16px;height:16px;border-radius:50%;display:inline-block;box-shadow:0 0 0 3px rgba(0,0,0,.06);margin-right:8px;vertical-align:-2px}
+.m28-light.green{background:#2f9e44}.m28-light.yellow{background:#f2b705}.m28-light.red{background:#c92a2a}.m28-light.gray{background:#aaa}
+.m28-incident{padding:12px;margin-top:10px;border:1px solid #e0d7ca;border-left:5px solid #c92a2a;border-radius:12px;background:#fff}.m28-incident b{display:block;margin-bottom:4px}
+</style>
+</head><body>
 <section id="home" class="screen active home">
 <div class="hero"><img src="logo-mandala.jpg" alt="Mandala"><h1>Manuales y Procedimientos</h1><p>GRUPO MANDALA</p></div>
 <div class="grid">
@@ -83,7 +90,7 @@ main{max-width:900px;margin:auto;padding:16px 15px 45px}.intro{background:white;
     <div class="body"><ul><li>DIRIGIR NO ES ÚNICAMENTE SUPERVISAR: ES ORGANIZAR, ANTICIPARSE, COMUNICAR, RESOLVER, COLABORAR Y DAR EJEMPLO.</li></ul></div></details>
 <div class="foot">GRUPO MANDALA · MANUALES Y PROCEDIMIENTOS</div>
 </main></section>
-<section class="screen" id="directorChecklist"><header><button class="back" onclick="show('director')">‹</button><div><b>Checklist del Director</b><small>Control operativo del turno</small></div></header><main><div class="intro"><p><b id="progText">0 de 0 tareas completadas</b></p><div class="progress"><div id="progBar"></div></div><p class="installhint">El progreso y las observaciones se guardan automáticamente en este dispositivo.</p></div><div class="checkgroup"><h3>1. ENTRADA Y CONTROL INICIAL</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d1"><span>Llegar puntual, correctamente uniformado y preparado para comenzar a trabajar.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d2"><span>Fichar la entrada y registrar la hora en la hoja de horas.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d3"><span>Revisar las incidencias y comunicaciones del turno anterior.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d4"><span>Enviar al grupo de Recursos Humanos la hoja de registros del día anterior.</span></label></div><div class="checkgroup"><h3>2. REVISIÓN DEL LOCAL</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d5"><span>Comprobar limpieza, orden, iluminación, climatización y estado general del local.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d6"><span>Revisar baños y zonas comunes.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d7"><span>Comprobar instalaciones, averías o necesidades de mantenimiento.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d8"><span>Revisar exteriores y terraza cuando estén operativos; comprobar calefacciones si corresponde.</span></label></div><div class="checkgroup"><h3>3. RESERVAS Y PREVISIÓN</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d9"><span>Revisar reservas, número de clientes, horarios, grupos y observaciones.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d10"><span>Comprobar alergias, intolerancias y peticiones especiales.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d11"><span>Valorar previsión de trabajo, climatología y necesidades reales de personal.</span></label></div><div class="checkgroup"><h3>4. PERSONAL Y ORGANIZACIÓN</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d12"><span>Comprobar personal de sala previsto y distribuir puestos/rangos.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d13"><span>Comprobar personal de cocina previsto con el jefe de cocina.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d14"><span>Ajustar personal si el volumen de reservas o el tiempo lo requieren.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d15"><span>Confirmar que todo el equipo conoce sus responsabilidades.</span></label></div><div class="checkgroup"><h3>5. MISE EN PLACE Y PREPARACIÓN</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d16"><span>Comprobar mise en place de sala y rangos: material, estaciones y montaje.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d17"><span>Comprobar mise en place de barra.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d18"><span>Revisar con el jefe de cocina la mise en place, producto y necesidades del servicio.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d19"><span>Comprobar faltas de producto, sugerencias y productos que se quieran potenciar.</span></label></div><div class="checkgroup"><h3>6. BRIEFING ANTES DEL SERVICIO</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d20"><span>Coordinar con el jefe de cocina prioridades, tiempos y posibles incidencias.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d21"><span>Realizar briefing con el equipo de sala antes del servicio.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d22"><span>Comunicar reservas especiales, alergias, faltas, sugerencias, objetivos y organización del turno.</span></label></div><div class="checkgroup"><h3>7. DURANTE EL SERVICIO</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d23"><span>Mantener una visión global de sala, cocina y barra.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d24"><span>Supervisar tiempos, calidad, atención al cliente y funcionamiento de los rangos.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d25"><span>Apoyar activamente al equipo cuando haya carga de trabajo.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d26"><span>Priorizar las necesidades operativas evitando conversaciones prolongadas con clientes cuando el servicio requiera apoyo.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d27"><span>Gestionar incidencias, reclamaciones, invitaciones, anulaciones, errores y mermas.</span></label></div><div class="checkgroup"><h3>8. CIERRE Y SEGUIMIENTO</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d28"><span>Supervisar limpieza, recogida, reposición y orden de todas las áreas.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d29"><span>Comprobar que las tareas de cierre quedan finalizadas antes de dar salida al personal.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d30"><span>Registrar y comunicar incidencias relevantes y necesidades para el siguiente turno.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d31"><span>Revisar fichajes, horas y pausas cuando corresponda.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d32"><span>Confirmar que el restaurante queda correctamente preparado y seguro.</span></label></div><div class="checkgroup"><h3>OBSERVACIONES / INCIDENCIAS</h3><textarea id="dirNotes" class="note" placeholder="Escribe aquí incidencias, pendientes o información para el siguiente turno..."></textarea></div><button id="m28Finalize" class="m28-primary" onclick="m28Finalize()">FINALIZAR CHECKLIST</button><button class="reset" onclick="resetChecklist()">Reiniciar checklist</button><button class="reset" onclick="directorDeleteChecklist()" style="margin-left:8px;background:#8b2f2f;color:#fff">Eliminar checklist</button><div class="foot">GRUPO MANDALA · CHECKLIST DEL DIRECTOR</div></main></section>
+<section class="screen" id="directorChecklist"><header><button class="back" onclick="show('director')">‹</button><div><b>Checklist del Director</b><small>Control operativo del turno</small></div></header><main><div class="intro"><p><b id="progText">0 de 0 tareas completadas</b></p><div class="progress"><div id="progBar"></div></div><p class="installhint">El progreso y las observaciones se guardan automáticamente en este dispositivo.</p></div><div class="checkgroup"><h3>1. ENTRADA Y CONTROL INICIAL</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d1"><span>Llegar puntual, correctamente uniformado y preparado para comenzar a trabajar.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d2"><span>Fichar la entrada y registrar la hora en la hoja de horas.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d3"><span>Revisar las incidencias y comunicaciones del turno anterior.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d4"><span>Enviar al grupo de Recursos Humanos la hoja de registros del día anterior.</span></label></div><div class="checkgroup"><h3>2. REVISIÓN DEL LOCAL</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d5"><span>Comprobar limpieza, orden, iluminación, climatización y estado general del local.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d6"><span>Revisar baños y zonas comunes.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d7"><span>Comprobar instalaciones, averías o necesidades de mantenimiento.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d8"><span>Revisar exteriores y terraza cuando estén operativos; comprobar calefacciones si corresponde.</span></label></div><div class="checkgroup"><h3>3. RESERVAS Y PREVISIÓN</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d9"><span>Revisar reservas, número de clientes, horarios, grupos y observaciones.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d10"><span>Comprobar alergias, intolerancias y peticiones especiales.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d11"><span>Valorar previsión de trabajo, climatología y necesidades reales de personal.</span></label></div><div class="checkgroup"><h3>4. PERSONAL Y ORGANIZACIÓN</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d12"><span>Comprobar personal de sala previsto y distribuir puestos/rangos.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d13"><span>Comprobar personal de cocina previsto con el jefe de cocina.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d14"><span>Ajustar personal si el volumen de reservas o el tiempo lo requieren.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d15"><span>Confirmar que todo el equipo conoce sus responsabilidades.</span></label></div><div class="checkgroup"><h3>5. MISE EN PLACE Y PREPARACIÓN</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d16"><span>Comprobar mise en place de sala y rangos: material, estaciones y montaje.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d17"><span>Comprobar mise en place de barra.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d18"><span>Revisar con el jefe de cocina la mise en place, producto y necesidades del servicio.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d19"><span>Comprobar faltas de producto, sugerencias y productos que se quieran potenciar.</span></label></div><div class="checkgroup"><h3>6. BRIEFING ANTES DEL SERVICIO</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d20"><span>Coordinar con el jefe de cocina prioridades, tiempos y posibles incidencias.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d21"><span>Realizar briefing con el equipo de sala antes del servicio.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d22"><span>Comunicar reservas especiales, alergias, faltas, sugerencias, objetivos y organización del turno.</span></label></div><div class="checkgroup"><h3>7. DURANTE EL SERVICIO</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d23"><span>Mantener una visión global de sala, cocina y barra.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d24"><span>Supervisar tiempos, calidad, atención al cliente y funcionamiento de los rangos.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d25"><span>Apoyar activamente al equipo cuando haya carga de trabajo.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d26"><span>Priorizar las necesidades operativas evitando conversaciones prolongadas con clientes cuando el servicio requiera apoyo.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d27"><span>Gestionar incidencias, reclamaciones, invitaciones, anulaciones, errores y mermas.</span></label></div><div class="checkgroup"><h3>8. CIERRE Y SEGUIMIENTO</h3><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d28"><span>Supervisar limpieza, recogida, reposición y orden de todas las áreas.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d29"><span>Comprobar que las tareas de cierre quedan finalizadas antes de dar salida al personal.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d30"><span>Registrar y comunicar incidencias relevantes y necesidades para el siguiente turno.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d31"><span>Revisar fichajes, horas y pausas cuando corresponda.</span></label><label class="checkitem"><input type="checkbox" class="dircheck" data-k="d32"><span>Confirmar que el restaurante queda correctamente preparado y seguro.</span></label></div><div class="checkgroup"><h3>OBSERVACIONES / INCIDENCIAS</h3><textarea id="dirNotes" class="note" placeholder="Escribe aquí incidencias, pendientes o información para el siguiente turno..."></textarea></div><button class="reset" onclick="resetChecklist()">Reiniciar checklist</button><div class="foot">GRUPO MANDALA · CHECKLIST DEL DIRECTOR</div></main></section>
 <section class="screen" id="rango"><header><button class="back" onclick="goHome()">‹</button><div><b>Jefe de rango</b><small>Manuales y control</small></div></header><main><div class="intro"><p>Consulta el manual completo o abre la checklist operativa del Jefe de Rango.</p></div><div class="hubcards"><button class="hubcard" onclick="show('rangoManual')"><b>📖 MANUAL DE PROCEDIMIENTOS</b><small>Consulta el manual completo del Jefe de Rango</small></button><button class="hubcard" onclick="show('rangoAccess')"><b>✅ CHECKLIST DEL JEFE DE RANGO</b><small>Marca las tareas del turno y añade observaciones</small></button></div></main></section>
 <section class="screen manual" id="rangoManual">
 <header><button class="back" onclick="show('rango')">‹</button><div><b>Jefe de rango</b><small>Manual de procedimientos</small></div></header>
@@ -187,7 +194,8 @@ function loadChecklist(){document.querySelectorAll('.dircheck').forEach(c=>{c.ch
 function updateProgress(){let a=[...document.querySelectorAll('.dircheck')],done=a.filter(x=>x.checked).length;let t=document.getElementById('progText'),b=document.getElementById('progBar');if(t)t.textContent=done+' de '+a.length+' tareas completadas';if(b)b.style.width=(a.length?done/a.length*100:0)+'%'}
 function resetChecklist(){if(confirm('¿Quieres desmarcar todas las tareas y borrar las observaciones?')){document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);let n=document.getElementById('dirNotes');if(n)n.value='';saveChecklist()}}
 window.addEventListener('DOMContentLoaded',()=>{loadChecklist();if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{})});
-</script>\n<script>\n/* V14 PRUEBA · Director con el mismo circuito final que Jefe de Rango */\nwindow.resetChecklist=async function(){\n  if(!confirm('¿Reiniciar las tareas? La checklist seguirá abierta y activa en Gerencia / Supervisión.'))return;\n  document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);\n  const notes=document.getElementById('dirNotes'); if(notes)notes.value='';\n  const r=sessionStorage.getItem('m28_restaurant')||'';\n  const n=sessionStorage.getItem('m28_director')||'';\n  m28Save();\n  updateProgress();\n  if(r&&n) await sync('director','.dircheck','dirNotes',r,n);\n};\n\nwindow.directorDeleteChecklist=async function(){\n  const subtitle=document.querySelector('#directorChecklist header small');\n  let r=sessionStorage.getItem('m28_restaurant')||'';\n  let n=sessionStorage.getItem('m28_director')||'';\n  if((!r||!n)&&subtitle&&subtitle.textContent.includes('·')){\n    const a=subtitle.textContent.split('·').map(x=>x.trim());\n    r=r||a[0]||''; n=n||a[1]||'';\n  }\n  if(!r||!n)return alert('No se ha podido identificar esta checklist.');\n  if(!confirm('¿Eliminar definitivamente esta checklist? Desaparecerá de Gerencia / Supervisión.'))return;\n  const ok=await cloudDeleteActive('director',r,n); if(!ok)return;\n  document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);\n  const notes=document.getElementById('dirNotes'); if(notes)notes.value='';\n  const k='m28_'+r.replace(/\\s+/g,'_')+'_';\n  document.querySelectorAll('.dircheck').forEach(c=>localStorage.removeItem(k+c.dataset.k));\n  localStorage.removeItem(k+'notes');\n  sessionStorage.removeItem('m28_restaurant');\n  sessionStorage.removeItem('m28_director');\n  cloudIds.director=null;\n  const rr=document.getElementById('m28Restaurant'),dd=document.getElementById('m28Director');\n  if(rr)rr.value=''; if(dd)dd.innerHTML='<option value="">Selecciona primero el restaurante</option>';\n  updateProgress();\n  show('directorAccess');\n};\n</script>\n</body></html>
+</script>
+
 <style>
 .m28-panel{background:#fff;border:1px solid #ded5c7;border-radius:18px;padding:18px;margin:12px 0}
 .m28-row{margin:14px 0}.m28-row label{display:block;font-weight:750;margin-bottom:7px}
@@ -198,12 +206,6 @@ window.addEventListener('DOMContentLoaded',()=>{loadChecklist();if('serviceWorke
 .m28-list{background:#fff;border:1px solid #ded5c7;border-radius:16px;padding:14px;margin:10px 0}
 .m28-muted{color:#777168;font-size:14px;line-height:1.45}
 .m28-ok{font-weight:750}
-.m28-dashboard{background:#fff;border:1px solid #ded5c7;border-radius:18px;padding:18px;margin:12px 0}
-.m28-dashboard-title{font-size:20px;font-weight:800;margin-bottom:4px}
-.m28-rest-card{padding:14px 0;border-bottom:1px solid #eee7dc}.m28-rest-card:last-child{border-bottom:0;padding-bottom:2px}
-.m28-rest-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}.m28-rest-name{font-weight:800;font-size:16px}.m28-rest-pct{font-weight:800;font-size:18px}
-.m28-rest-track{height:12px;background:#eee7dc;border-radius:999px;overflow:hidden}.m28-rest-fill{height:100%;background:#7b6b52;border-radius:999px;transition:width .35s ease}
-.m28-rest-detail{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:7px;color:#777168;font-size:12px}
 </style>
 
 <section class="screen" id="directorAccess">
@@ -242,11 +244,8 @@ window.addEventListener('DOMContentLoaded',()=>{loadChecklist();if('serviceWorke
 <div class="m28-panel"><b>Restaurantes</b><div style="margin-top:10px">
 <span class="m28-badge">Farini Fustera</span><span class="m28-badge">Mandala Port</span><span class="m28-badge">Rull</span><span class="m28-badge">Mandala Fustera</span><span class="m28-badge">Farini Benissa</span>
 </div></div>
-<div id="m28RestaurantProgress" class="m28-dashboard">
-<div class="m28-dashboard-title">Progreso de los restaurantes</div>
-<p class="m28-muted" style="margin:4px 0 8px">Vista general en tiempo real.</p>
-<div id="m28RestaurantProgressRows"></div>
-</div>
+<div id="m28TrafficPanel" class="m28-panel"><b>Semáforo de seguimiento</b><p class="m28-muted">Estado de Director y Jefe de Rango por restaurante.</p><div id="m28TrafficRows"></div></div>
+<div id="m28IncidentPanel" class="m28-panel"><b>Incidencias</b><p class="m28-muted">Observaciones comunicadas desde las checklists.</p><div id="m28IncidentRows"></div></div>
 <div id="m28Live"></div><div id="m28History"></div>
 <div id="m28Admin" class="m28-panel" style="display:none">
 <b>Administración</b>
@@ -671,29 +670,6 @@ window.live = async function(){
     let act=a.filter(x=>x.estado==='activa');
     let fin=a.filter(x=>x.estado==='finalizada');
 
-    // Cuadro de mando: los cinco restaurantes aparecen siempre, incluso al 0 %.
-    const restaurantes=['Farini Fustera','Mandala Port','Rull','Mandala Fustera','Farini Benissa'];
-    const rows=document.getElementById('m28RestaurantProgressRows');
-    if(rows){
-      rows.innerHTML='';
-      restaurantes.forEach(rest=>{
-        const rr=act.filter(x=>x.restaurante===rest);
-        const total=rr.reduce((n,x)=>n+Number(x.total_tareas||0),0);
-        const hechas=rr.reduce((n,x)=>n+Number(x.tareas_completadas||0),0);
-        const pct=total?Math.round(hechas*100/total):0;
-        const dir=rr.find(x=>x.tipo==='director');
-        const rango=rr.find(x=>x.tipo==='rango');
-        const dirPct=dir&&Number(dir.total_tareas)?Math.round(Number(dir.tareas_completadas||0)*100/Number(dir.total_tareas)):0;
-        const ranPct=rango&&Number(rango.total_tareas)?Math.round(Number(rango.tareas_completadas||0)*100/Number(rango.total_tareas)):0;
-        const d=document.createElement('div');
-        d.className='m28-rest-card';
-        d.innerHTML='<div class="m28-rest-head"><span class="m28-rest-name">'+esc(rest)+'</span><span class="m28-rest-pct">'+pct+'%</span></div>'+
-          '<div class="m28-rest-track"><div class="m28-rest-fill" style="width:'+pct+'%"></div></div>'+
-          '<div class="m28-rest-detail"><span>Director: '+(dir?dirPct+'%':'0%')+'</span><span>Jefe de Rango: '+(rango?ranPct+'%':'0%')+'</span></div>';
-        rows.appendChild(d);
-      });
-    }
-
     L.innerHTML='<div class="m28-panel"><b>Checklists activas · tiempo real</b><p class="m28-muted">Actualización automática cada 3 segundos.</p></div>';
     act.forEach(x=>{
       let pc=x.total_tareas?Math.round(x.tareas_completadas*100/x.total_tareas):0,d=document.createElement('div');
@@ -873,3 +849,48 @@ window.verChecklistGuardada=async function(id){
   };
 })();
 </script>
+<script>
+/* Semáforo e incidencias EN TIEMPO REAL: usa tanto checklists activas como finalizadas de hoy. */
+(function(){
+ const restaurants=['Farini Fustera','Mandala Port','Rull','Mandala Fustera','Farini Benissa'];
+ const previousLive=window.live;
+ function tipoLabel(t){return t==='director'?'Director':(t==='rango'?'Jefe de Rango':(t||'Checklist'));}
+ function isToday(iso){if(!iso)return false;const d=new Date(iso),n=new Date();return d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate();}
+ async function realtimeDashboard(){
+   const tr=document.getElementById('m28TrafficRows'), ir=document.getElementById('m28IncidentRows');
+   if(!tr||!ir)return;
+   try{
+     const all=await sb('checklists?select=*&order=iniciada_en.desc&limit=200');
+     const today=all.filter(x=>isToday(x.iniciada_en||x.actualizada_en||x.finalizada_en));
+     tr.innerHTML='';
+     restaurants.forEach(rest=>{
+       const rr=today.filter(x=>x.restaurante===rest&&(x.tipo==='director'||x.tipo==='rango'));
+       const incident=rr.some(x=>String(x.observaciones||'').trim().length>0);
+       const active=rr.some(x=>x.estado==='activa');
+       const finished=rr.some(x=>x.estado==='finalizada');
+       let cls='gray', txt='Sin actividad';
+       if(incident){cls='red';txt='Incidencia';}
+       else if(active){cls='yellow';txt='En curso';}
+       else if(finished){cls='green';txt='Correcto';}
+       const row=document.createElement('div'); row.className='m28-traffic-row';
+       row.innerHTML='<div><span class="m28-light '+cls+'"></span><b>'+esc(rest)+'</b></div><span class="m28-muted">'+txt+'</span>';
+       tr.appendChild(row);
+     });
+     const incidents=today.filter(x=>String(x.observaciones||'').trim().length>0);
+     ir.innerHTML='';
+     if(!incidents.length) ir.innerHTML='<div class="m28-muted" style="padding-top:8px">No hay incidencias comunicadas hoy.</div>';
+     incidents.forEach(x=>{
+       const d=document.createElement('div'); d.className='m28-incident';
+       d.innerHTML='<b>'+esc(x.restaurante)+' · '+esc(tipoLabel(x.tipo))+'</b><div class="m28-muted">'+esc(x.responsable||'')+(x.estado==='activa'?' · En curso':' · Finalizada')+'</div><div style="margin-top:7px">'+esc(x.observaciones)+'</div>';
+       ir.appendChild(d);
+     });
+   }catch(e){console.error('Semáforo/incidencias:',e);}
+ }
+ window.live=async function(){if(previousLive)await previousLive();await realtimeDashboard();};
+ // Actualización propia para que el cuadro superior nunca dependa de finalizar.
+ setInterval(()=>{if(document.getElementById('m28Panel')?.classList.contains('active'))realtimeDashboard();},3000);
+ document.addEventListener('DOMContentLoaded',realtimeDashboard);
+})();
+</script>
+
+</body></html>
