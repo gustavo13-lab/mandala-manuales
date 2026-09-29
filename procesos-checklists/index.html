@@ -24,6 +24,12 @@ main{max-width:900px;margin:auto;padding:16px 15px 45px}.intro{background:white;
 
 .hubcards{display:grid;gap:14px;margin-top:14px}.hubcard{border:1px solid var(--line);background:#fff;border-radius:20px;padding:24px;text-align:left;font:inherit;box-shadow:0 5px 18px #0000000b}.hubcard b{font-size:20px;display:block;margin-bottom:6px}.hubcard small{font-size:15px;color:var(--muted)}
 .checkgroup{background:#fff;border:1px solid var(--line);border-radius:17px;margin:12px 0;padding:16px}.checkgroup h3{margin:0 0 10px;font-size:18px}.checkitem{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid #eee7dc;font-size:16px;line-height:1.4}.checkitem:first-of-type{border-top:0}.checkitem input{width:24px;height:24px;flex:0 0 auto;accent-color:#7b6b52}.progress{height:12px;background:#e8e1d7;border-radius:20px;overflow:hidden;margin:10px 0}.progress>div{height:100%;background:#7b6b52;width:0}.note{width:100%;min-height:110px;border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit;background:#fff}.reset{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 14px}.installhint{font-size:13px;color:var(--muted);margin-top:10px}
+
+/* V16 · Lectura por voz en manuales */
+.voicebar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}.voicebar button{border:0;border-radius:10px;padding:10px 12px;font-weight:800;background:#111;color:#fff;cursor:pointer}.voicebar button:disabled{opacity:.45}.voicebar .voice-stop{background:#6b1f1f}
+
+.voicebar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.voicebar span{font-size:13px;opacity:.78;flex:1;min-width:210px}.section-voice-btn{border:0;background:transparent;font-size:21px;line-height:1;cursor:pointer;padding:8px 10px;margin-left:auto;border-radius:10px;flex:0 0 auto}.section-voice-btn:active{transform:scale(.94)}details.proc>summary{display:flex;align-items:center;gap:8px}details.proc>summary .section-title-text{flex:1}.section-voice-btn.voice-playing{background:rgba(0,0,0,.08)}
+.text-voice-btn{border:0;background:transparent;font-size:19px;line-height:1;cursor:pointer;padding:4px 7px;margin-left:7px;border-radius:8px;vertical-align:middle}.text-voice-btn:active{transform:scale(.94)}.text-voice-btn.voice-playing{background:rgba(0,0,0,.08)}.voice-text-unit{position:relative}
 </style>
 <style>
 .m28-traffic-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
@@ -64,7 +70,7 @@ main{max-width:900px;margin:auto;padding:16px 15px 45px}.intro{background:white;
 <section class="screen" id="director"><header><button class="back" onclick="goHome()">‹</button><div><b>Director</b><small>Manuales y control</small></div></header><main><div class="intro"><p>Consulta el manual completo o abre la checklist operativa del Director.</p></div><div class="hubcards"><button class="hubcard" onclick="show('directorManual')"><b>📖 MANUAL DE PROCEDIMIENTOS</b><small>Consulta el manual completo del Director</small></button><button class="hubcard" onclick="show('directorChecklist')"><b>✅ CHECKLIST DEL DIRECTOR</b><small>Marca las tareas del turno y añade observaciones</small></button></div></main></section>
 <section class="screen manual" id="directorManual">
 <header><button class="back" onclick="show('director')">‹</button><div><b>Director</b><small>Manual de procedimientos</small></div></header>
-<main>
+<main><div class="voicebar" data-voice-for="directorManual"><span>🔊 Cada texto tiene su altavoz: pulsa exactamente el que quieras escuchar</span><button class="voice-stop" onclick="voiceStop()">⏹️ Detener</button></div>
 <div class="intro"><p>El director es el máximo responsable del correcto funcionamiento del restaurante durante su turno. Debe garantizar la organización, coordinación y supervisión del establecimiento, del equipo y del servicio, manteniendo en todo momento los estándares establecidos por Mandala.</p></div>
 <div class="tools"><button onclick="allOpen('directorManual',true)">Abrir todo</button><button onclick="allOpen('directorManual',false)">Cerrar todo</button></div>
 <details class="proc"><summary>1. ENTRADA Y FICHAJE<span>＋</span></summary>
@@ -113,7 +119,7 @@ main{max-width:900px;margin:auto;padding:16px 15px 45px}.intro{background:white;
 <section class="screen" id="rango"><header><button class="back" onclick="goHome()">‹</button><div><b>Jefe de rango</b><small>Manuales y control</small></div></header><main><div class="intro"><p>Consulta el manual completo o abre la checklist operativa del Jefe de Rango.</p></div><div class="hubcards"><button class="hubcard" onclick="show('rangoManual')"><b>📖 MANUAL DE PROCEDIMIENTOS</b><small>Consulta el manual completo del Jefe de Rango</small></button><button class="hubcard" onclick="show('rangoAccess')"><b>✅ CHECKLIST DEL JEFE DE RANGO</b><small>Marca las tareas del turno y añade observaciones</small></button></div></main></section>
 <section class="screen manual" id="rangoManual">
 <header><button class="back" onclick="show('rango')">‹</button><div><b>Jefe de rango</b><small>Manual de procedimientos</small></div></header>
-<main>
+<main><div class="voicebar" data-voice-for="rangoManual"><span>🔊 Cada texto tiene su altavoz: pulsa exactamente el que quieras escuchar</span><button class="voice-stop" onclick="voiceStop()">⏹️ Detener</button></div>
 <div class="intro"><p>El jefe de rango es el responsable directo del funcionamiento y servicio de las mesas que tiene asignadas. Debe controlar su rango desde la preparación hasta la salida del cliente y tomar personalmente las comandas mediante PDA, asegurándose de que toda la información llegue correctamente.</p><p>Además de ser responsable de su rango, será responsable de la sala cuando el director así se lo delegue, asumiendo durante ese periodo la supervisión y coordinación necesarias para garantizar el correcto funcionamiento del servicio.</p></div>
 <div class="tools"><button onclick="allOpen('rangoManual',true)">Abrir todo</button><button onclick="allOpen('rangoManual',false)">Cerrar todo</button></div>
 <details class="proc"><summary>1. ENTRADA Y FICHAJE<span>＋</span></summary>
@@ -147,7 +153,7 @@ main{max-width:900px;margin:auto;padding:16px 15px 45px}.intro{background:white;
 <section class="screen" id="rangoAccess"><header><button class="back" onclick="show('rango')">‹</button><div><b>Inicio de checklist</b><small>Identificación del turno</small></div></header><main><div class="m28-panel"><div class="m28-row"><label>Restaurante</label><select id="rangoRestaurant"><option value="">Selecciona restaurante</option><option>Farini Fustera</option><option>Mandala Port</option><option>Rull</option><option>Mandala Fustera</option><option>Farini Benissa</option></select></div><div class="m28-row"><label>Jefe de rango</label><input id="rangoName" type="text" autocomplete="name" placeholder="Escribe tu nombre"></div><button class="m28-primary" onclick="rangoStart()">COMENZAR CHECKLIST</button></div></main></section>
 <section class="screen" id="rangoChecklist"><header><button class="back" onclick="show('rangoAccess')">‹</button><div><b>Checklist del Jefe de Rango</b><small id="rangoSub">Control operativo del turno</small></div></header><main><div class="intro"><p><b id="rangoProgText">0 de 30 tareas completadas</b></p><div class="progress"><div id="rangoProgBar"></div></div><p class="installhint">El progreso y las observaciones se guardan automáticamente en este dispositivo.</p></div><div class="checkgroup"><h3>1. ENTRADA Y FICHAJE</h3><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r1"><span>Llegar al puesto de trabajo preparado para comenzar el turno, correctamente uniformado y con la imagen personal adecuada.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r2"><span>Fichar la entrada inmediatamente al incorporarse al puesto de trabajo.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r3"><span>Registrar la hora de entrada en la hoja de registro de horas.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r4"><span>Registrar correctamente en la hoja de horas todas las pausas realizadas durante la jornada.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r5"><span>Una vez fichada la entrada, comenzar a trabajar directamente, evitando pérdidas de tiempo antes de iniciar las tareas.</span></label></div><div class="checkgroup"><h3>2. PREPARACIÓN DEL RANGO</h3><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r6"><span>Revisar limpieza, montaje, orden y presentación de todas las mesas de su rango.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r7"><span>Comprobar la mise en place y que dispone de todo el material necesario para el servicio.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r8"><span>Comunicar cualquier falta de material, rotura, avería o incidencia antes de comenzar.</span></label></div><div class="checkgroup"><h3>3. RESERVAS Y PREPARACIÓN DEL SERVICIO</h3><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r9"><span>Conocer las reservas, grupos, mesas especiales y observaciones de su rango.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r10"><span>Revisar alergias, intolerancias y necesidades especiales de los clientes.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r11"><span>Conocer las sugerencias, productos no disponibles, fuera de carta y productos a potenciar.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r12"><span>Tener clara la organización, prioridades e indicaciones dadas en el briefing.</span></label></div><div class="checkgroup"><h3>4. ATENCIÓN Y CONTROL DEL CLIENTE</h3><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r13"><span>Recibir al cliente siempre con una gran sonrisa, de forma natural y cálida, manteniendo un trato cercano, educado y profesional.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r14"><span>Controlar constantemente sus mesas, tiempos de servicio, limpieza, orden y reposición de bebidas.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r15"><span>Anticiparse a las necesidades del cliente y cuidar los pequeños detalles.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r16"><span>Mantener una actitud positiva, profesional y atenta durante todo el servicio.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r17"><span>Asumir la responsabilidad y coordinación de la sala cuando el director así se lo delegue, garantizando el correcto funcionamiento del servicio.</span></label></div><div class="checkgroup"><h3>5. COMANDAS Y VENTA</h3><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r18"><span>Tomar personalmente las comandas de las mesas de su rango mediante PDA.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r19"><span>Comprobar productos, cantidades, modificaciones, alergias, intolerancias y peticiones especiales antes de enviar la comanda.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r20"><span>Asegurarse de que lo servido corresponde con lo solicitado.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r21"><span>Recomendar platos, bebidas, postres, sugerencias y productos a potenciar, realizando una venta activa pero natural.</span></label></div><div class="checkgroup"><h3>6. CONTROL E INCIDENCIAS</h3><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r22"><span>Detectar y comunicar inmediatamente cualquier error, retraso, queja, reclamación o incidencia.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r23"><span>Informar al director de cualquier situación que no pueda resolver directamente y hacer seguimiento hasta su solución.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r24"><span>Comunicar al director cualquier equivocación, invitación o merma para que sea él quien la ejecute y registre.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r25"><span>Pedir apoyo cuando sea necesario y colaborar con el resto del equipo.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r26"><span>Mantener una actitud colaborativa y prestar apoyo a runners, otros rangos, cocina o cualquier compañero cuando sea necesario.</span></label></div><div class="checkgroup"><h3>7. CUENTAS Y CIERRE DEL RANGO</h3><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r27"><span>Revisar personalmente las cuentas antes de entregarlas y realizar correctamente el cobro.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r28"><span>Comprobar que no queda ninguna mesa pendiente de cerrar.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r29"><span>Dejar mesas, rango y material limpios, ordenados, repuestos y preparados para el siguiente servicio.</span></label><label class="checkitem"><input type="checkbox" class="rangocheck" data-k="r30"><span>Comunicar cualquier falta de material, rotura, avería, incidencia o necesidad detectada durante el turno.</span></label></div><div class="checkgroup"><h3>INCIDENCIAS / OBSERVACIONES</h3><textarea id="rangoNotes" class="note" placeholder="Escribe aquí incidencias, pendientes o información para el siguiente turno..."></textarea></div><button class="m28-primary" onclick="rangoFinalize()">FINALIZAR CHECKLIST</button><button class="reset" onclick="rangoReset()">Reiniciar checklist</button><button class="reset" onclick="rangoDeleteChecklist()" style="margin-left:8px;background:#8b2f2f;color:#fff">Eliminar checklist</button><div class="foot">GRUPO MANDALA · CHECKLIST DEL JEFE DE RANGO</div></main></section><section class="screen manual" id="runner">
 <header><button class="back" onclick="goHome()">‹</button><div><b>Camarero / Runner</b><small>Manual de procedimientos</small></div></header>
-<main>
+<main><div class="voicebar" data-voice-for="runner"><span>🔊 Cada texto tiene su altavoz: pulsa exactamente el que quieras escuchar</span><button class="voice-stop" onclick="voiceStop()">⏹️ Detener</button></div>
 <div class="intro"><p>El Camarero / Runner o Ayudante de Camarero forma parte activa del servicio de sala. Su función principal es llevar el producto, mantener el servicio ágil y ordenado, retirar, recoger y apoyar constantemente al jefe de rango y al resto del equipo.</p><p>Las funciones del camarero y del runner o ayudante son comunes salvo en dos responsabilidades específicas: la toma de comandas y el conocimiento exhaustivo de la carta. Cuando el director o responsable de turno lo determine, será exclusivamente el camarero quien tome la comanda siguiendo el procedimiento establecido; por ello, deberá mantener un conocimiento completo y actualizado de la carta.</p><p>El Camarero / Runner o Ayudante de Camarero deberá escuchar y seguir en todo momento las indicaciones del jefe de rango, director o responsable de turno, respetando la organización y las prioridades del servicio.</p></div>
 <div class="tools"><button onclick="allOpen('runner',true)">Abrir todo</button><button onclick="allOpen('runner',false)">Cerrar todo</button></div>
 <details class="proc"><summary>1. ENTRADA Y FICHAJE<span>＋</span></summary>
@@ -178,7 +184,7 @@ IDA PARA SERVICIO · VUELTA PARA RECOGIDA</li></ul></div></details>
 </main></section>
 <section class="screen manual" id="normas">
 <header><button class="back" onclick="goHome()">‹</button><div><b>Normas Generales</b><small>Convivencia y funcionamiento</small></div></header>
-<main>
+<main><div class="voicebar" data-voice-for="normas"><span>🔊 Cada texto tiene su altavoz: pulsa exactamente el que quieras escuchar</span><button class="voice-stop" onclick="voiceStop()">⏹️ Detener</button></div>
 <div class="intro"><p>Estas normas son de aplicación general a todo el personal del Grupo Mandala, independientemente de su puesto, categoría o funciones, y tienen como objetivo establecer unas pautas comunes de convivencia y funcionamiento que garanticen un entorno de trabajo basado en el respeto, la responsabilidad, la seguridad, la profesionalidad y el trabajo en equipo.</p></div>
 <div class="tools"><button onclick="allOpen('normas',true)">Abrir todo</button><button onclick="allOpen('normas',false)">Cerrar todo</button></div>
 <details class="proc"><summary>1. PUNTUALIDAD, ASISTENCIA Y REGISTRO DE JORNADA<span>＋</span></summary><div class="body"><ul><li>Todo trabajador deberá cumplir el horario establecido y presentarse con tiempo suficiente para comenzar a trabajar a la hora indicada, correctamente uniformado y preparado.</li><li>Es obligatorio registrar correctamente la entrada, salida y todas las pausas o descansos. El fichaje es personal e intransferible y no podrá realizarse por otro compañero.</li><li>Las ausencias o retrasos deberán comunicarse al responsable lo antes posible y justificarse cuando corresponda.</li></ul></div></details>
@@ -205,15 +211,88 @@ IDA PARA SERVICIO · VUELTA PARA RECOGIDA</li></ul></div></details>
 <div class="foot">GRUPO MANDALA · NORMAS GENERALES DE CONVIVENCIA Y FUNCIONAMIENTO</div>
 </main></section>
 <script>
-function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
+function show(id){if(window.voiceStop)window.voiceStop();document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
 function goHome(){show('home')}
 function allOpen(id,v){document.querySelectorAll('#'+id+' details').forEach(d=>d.open=v)}
+/* V19 · Voz exacta por cada parte visible del texto: 1 altavoz = 1 bloque exacto. */
+let mandalaVoiceToken=0;
+let mandalaVoiceButton=null;
+function voiceSpanish(){
+  const voices=speechSynthesis.getVoices();
+  return voices.find(v=>/^es-ES$/i.test(v.lang))||voices.find(v=>/^es/i.test(v.lang))||null;
+}
+function voiceStop(){
+  if('speechSynthesis' in window)speechSynthesis.cancel();
+  mandalaVoiceToken++;
+  if(mandalaVoiceButton)mandalaVoiceButton.classList.remove('voice-playing');
+  mandalaVoiceButton=null;
+}
+function exactText(el){
+  if(!el)return '';
+  const c=el.cloneNode(true);
+  c.querySelectorAll('button,input,textarea,select,script,style,.section-voice-btn,.text-voice-btn').forEach(x=>x.remove());
+  return (c.innerText||c.textContent||'').replace(/[＋+]/g,' ').replace(/\s+/g,' ').trim();
+}
+function voiceReadExact(el,btn){
+  if(!('speechSynthesis' in window))return alert('La lectura por voz no está disponible en este dispositivo.');
+  const text=exactText(el);
+  if(!text)return;
+  voiceStop();
+  const token=mandalaVoiceToken;
+  mandalaVoiceButton=btn; btn.classList.add('voice-playing');
+  const chunks=[]; let rest=text;
+  while(rest.length>220){
+    let cut=Math.max(rest.lastIndexOf('. ',220),rest.lastIndexOf('; ',220),rest.lastIndexOf(', ',220),rest.lastIndexOf(' ',220));
+    if(cut<80)cut=220; else cut+=1;
+    chunks.push(rest.slice(0,cut).trim()); rest=rest.slice(cut).trim();
+  }
+  if(rest)chunks.push(rest);
+  let i=0;
+  function next(){
+    if(token!==mandalaVoiceToken||i>=chunks.length){
+      if(token===mandalaVoiceToken&&mandalaVoiceButton){mandalaVoiceButton.classList.remove('voice-playing');mandalaVoiceButton=null;}
+      return;
+    }
+    const u=new SpeechSynthesisUtterance(chunks[i++]); u.lang='es-ES'; u.rate=.95; const v=voiceSpanish(); if(v)u.voice=v;
+    u.onend=next; u.onerror=e=>{if(e.error!=='canceled'&&e.error!=='interrupted')console.warn('Voz:',e.error)};
+    speechSynthesis.speak(u);
+  }
+  next();
+}
+function makeVoiceButton(target,title){
+  const b=document.createElement('button'); b.type='button'; b.className='text-voice-btn'; b.setAttribute('aria-label',title||'Escuchar este texto'); b.title=title||'Escuchar este texto'; b.textContent='🔊';
+  b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();voiceReadExact(target,b)});
+  return b;
+}
+function installExactVoice(){
+  document.querySelectorAll('.manual').forEach(manual=>{
+    /* Título de cada apartado: lee solamente el título. */
+    manual.querySelectorAll('details.proc > summary').forEach(summary=>{
+      if(!summary.querySelector('.text-voice-btn')){
+        const b=makeVoiceButton(summary,'Escuchar título del apartado');
+        const plus=summary.querySelector('span'); if(plus)summary.insertBefore(b,plus); else summary.appendChild(b);
+      }
+    });
+    /* Cada párrafo y cada punto de lista tiene su propio altavoz y lee exactamente ese bloque. */
+    manual.querySelectorAll('details.proc > .body p, details.proc > .body li, .intro > p').forEach(el=>{
+      if(el.querySelector(':scope > .text-voice-btn'))return;
+      el.classList.add('voice-text-unit');
+      el.appendChild(makeVoiceButton(el,'Escuchar únicamente este texto'));
+    });
+  });
+}
+window.voiceStop=voiceStop; window.voiceReadExact=voiceReadExact;
+window.addEventListener('DOMContentLoaded',installExactVoice);
+window.addEventListener('pagehide',voiceStop);
+
 function saveChecklist(){document.querySelectorAll('.dircheck').forEach(c=>localStorage.setItem('mandala_'+c.dataset.k,c.checked?'1':'0'));localStorage.setItem('mandala_dirNotes',document.getElementById('dirNotes')?.value||'');updateProgress()}
 function loadChecklist(){document.querySelectorAll('.dircheck').forEach(c=>{c.checked=localStorage.getItem('mandala_'+c.dataset.k)==='1';c.addEventListener('change',saveChecklist)});let n=document.getElementById('dirNotes');if(n){n.value=localStorage.getItem('mandala_dirNotes')||'';n.addEventListener('input',saveChecklist)}updateProgress()}
 function updateProgress(){let a=[...document.querySelectorAll('.dircheck')],done=a.filter(x=>x.checked).length;let t=document.getElementById('progText'),b=document.getElementById('progBar');if(t)t.textContent=done+' de '+a.length+' tareas completadas';if(b)b.style.width=(a.length?done/a.length*100:0)+'%'}
 function resetChecklist(){if(confirm('¿Quieres desmarcar todas las tareas y borrar las observaciones?')){document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);let n=document.getElementById('dirNotes');if(n)n.value='';saveChecklist()}}
 window.addEventListener('DOMContentLoaded',()=>{loadChecklist();if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{})});
-</script>\n<script>\n/* V14 PRUEBA · Director con el mismo circuito final que Jefe de Rango */\nwindow.resetChecklist=async function(){\n  if(!confirm('¿Reiniciar las tareas? La checklist seguirá abierta y activa en Gerencia / Supervisión.'))return;\n  document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);\n  const notes=document.getElementById('dirNotes'); if(notes)notes.value='';\n  const r=sessionStorage.getItem('m28_restaurant')||'';\n  const n=sessionStorage.getItem('m28_director')||'';\n  m28Save();\n  updateProgress();\n  if(r&&n) await sync('director','.dircheck','dirNotes',r,n);\n};\n\nwindow.directorDeleteChecklist=async function(){\n  const subtitle=document.querySelector('#directorChecklist header small');\n  let r=sessionStorage.getItem('m28_restaurant')||'';\n  let n=sessionStorage.getItem('m28_director')||'';\n  if((!r||!n)&&subtitle&&subtitle.textContent.includes('·')){\n    const a=subtitle.textContent.split('·').map(x=>x.trim());\n    r=r||a[0]||''; n=n||a[1]||'';\n  }\n  if(!r||!n)return alert('No se ha podido identificar esta checklist.');\n  if(!confirm('¿Eliminar definitivamente esta checklist? Desaparecerá de Gerencia / Supervisión.'))return;\n  const ok=await cloudDeleteActive('director',r,n); if(!ok)return;\n  document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);\n  const notes=document.getElementById('dirNotes'); if(notes)notes.value='';\n  const k='m28_'+r.replace(/\\s+/g,'_')+'_';\n  document.querySelectorAll('.dircheck').forEach(c=>localStorage.removeItem(k+c.dataset.k));\n  localStorage.removeItem(k+'notes');\n  sessionStorage.removeItem('m28_restaurant');\n  sessionStorage.removeItem('m28_director');\n  cloudIds.director=null;\n  const rr=document.getElementById('m28Restaurant'),dd=document.getElementById('m28Director');\n  if(rr)rr.value=''; if(dd)dd.innerHTML='<option value="">Selecciona primero el restaurante</option>';\n  updateProgress();\n  show('directorAccess');\n};\n</script>\n
+</script>
+<script>
+/* V14 PRUEBA · Director con el mismo circuito final que Jefe de Rango */\nwindow.resetChecklist=async function(){\n  if(!confirm('¿Reiniciar las tareas? La checklist seguirá abierta y activa en Gerencia / Supervisión.'))return;\n  document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);\n  const notes=document.getElementById('dirNotes'); if(notes)notes.value='';\n  const r=sessionStorage.getItem('m28_restaurant')||'';\n  const n=sessionStorage.getItem('m28_director')||'';\n  m28Save();\n  updateProgress();\n  if(r&&n) await sync('director','.dircheck','dirNotes',r,n);\n};\n\nwindow.directorDeleteChecklist=async function(){\n  const subtitle=document.querySelector('#directorChecklist header small');\n  let r=sessionStorage.getItem('m28_restaurant')||'';\n  let n=sessionStorage.getItem('m28_director')||'';\n  if((!r||!n)&&subtitle&&subtitle.textContent.includes('·')){\n    const a=subtitle.textContent.split('·').map(x=>x.trim());\n    r=r||a[0]||''; n=n||a[1]||'';\n  }\n  if(!r||!n)return alert('No se ha podido identificar esta checklist.');\n  if(!confirm('¿Eliminar definitivamente esta checklist? Desaparecerá de Gerencia / Supervisión.'))return;\n  const ok=await cloudDeleteActive('director',r,n); if(!ok)return;\n  document.querySelectorAll('.dircheck').forEach(c=>c.checked=false);\n  const notes=document.getElementById('dirNotes'); if(notes)notes.value='';\n  const k='m28_'+r.replace(/\\s+/g,'_')+'_';\n  document.querySelectorAll('.dircheck').forEach(c=>localStorage.removeItem(k+c.dataset.k));\n  localStorage.removeItem(k+'notes');\n  sessionStorage.removeItem('m28_restaurant');\n  sessionStorage.removeItem('m28_director');\n  cloudIds.director=null;\n  const rr=document.getElementById('m28Restaurant'),dd=document.getElementById('m28Director');\n  if(rr)rr.value=''; if(dd)dd.innerHTML='<option value="">Selecciona primero el restaurante</option>';\n  updateProgress();\n  show('directorAccess');\n};\n</script>\n
 <script>
 /* V3 · Vinculación del iPad a un restaurante para checklists operativas */
 const DEVICE_RESTAURANTS=['MANDALA FUSTERA','MANDALA PORT','FARINI FUSTERA','RULL'];
