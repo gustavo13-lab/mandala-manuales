@@ -1,14 +1,13 @@
 {
-  "name": "Manual de Bienvenida · Mandala",
+  "name": "Mandala Group · Manual de Bienvenida",
   "short_name": "Bienvenida",
-  "id": "./bienvenida-v3",
-  "start_url": "./?app=bienvenida-v3",
+  "start_url": "./?v=final1",
   "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "icons": [
-    {"src":"mandala-bienvenida-192-v3.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
-    {"src":"mandala-bienvenida-512-v3.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+    {"src":"./mandala-bienvenida-192-final.png?v=final1","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"./mandala-bienvenida-512-final.png?v=final1","sizes":"512x512","type":"image/png","purpose":"any"}
   ]
 }
