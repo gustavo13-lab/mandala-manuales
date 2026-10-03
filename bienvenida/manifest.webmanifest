@@ -1,7 +1,7 @@
 {
   "name": "Mandala Group · Manual de Bienvenida",
   "short_name": "Bienvenida",
-  "start_url": "./?v=final1",
+  "start_url": "./?v=final2",
   "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
