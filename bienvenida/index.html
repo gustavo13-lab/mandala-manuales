@@ -221,6 +221,14 @@ main{position:relative;padding:10px 12px 82px}
 .director-grid{width:min(96vw,780px);display:grid;grid-template-columns:1fr;gap:8px}.director{display:grid;grid-template-columns:92px 1fr;align-items:center;min-height:74px;background:#fffaf0;border:1px solid rgba(18,63,46,.22);border-radius:15px;overflow:hidden}.brand{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#eef3ea;color:#123f2e;padding:5px;text-align:center}.brand strong{font-family:Georgia,serif;font-size:16px;font-style:italic}.brand.rull strong,.brand.forno strong{font-style:normal}.brand small{font-size:9px;font-weight:800;margin-top:3px}.director .who{text-align:left;padding:8px 12px}.director .who b{display:block;font-size:17px;color:#123f2e}.director .who span{font-size:14px;color:#333}
 @media(min-width:700px){.director-grid{grid-template-columns:1fr 1fr}.director:last-child{grid-column:1/-1;width:50%;justify-self:center}.page.editorial .copy{margin-bottom:30px}}
 @media(max-height:720px){.orgflow{gap:5px}.orgbox{padding:7px 9px}.orgline{height:4px}.orgbox p{font-size:12px}.director{min-height:58px}.page.org h1{font-size:30px;margin-bottom:5px}}
+
+/* Ajuste exclusivo de la página 7: texto completo visible en móvil */
+.page[data-index="7"] main{justify-content:flex-start;overflow-y:auto;overscroll-behavior:contain;padding:12px 14px 20px;scrollbar-width:thin}
+.page[data-index="7"] .restaurant-photo{flex:0 0 auto;width:100%;height:clamp(180px,40dvh,390px);border-radius:20px}
+.page[data-index="7"] h1{flex:0 0 auto;margin:15px 0 10px;font-size:clamp(30px,7vw,48px)}
+.page[data-index="7"] .copy{flex:0 0 auto;font-size:clamp(17px,4.3vw,22px);line-height:1.4;padding-bottom:20px}
+.page[data-index="7"] nav{position:relative;flex:0 0 auto;height:auto;min-height:76px}
+@media(max-height:750px){.page[data-index="7"] .restaurant-photo{height:30dvh}}
 </style>
 <style id="v16-ajuste-ilustraciones">
 .page .artwrap{width:min(96vw,980px);height:min(72dvh,900px);margin:auto;display:flex;align-items:center;justify-content:center}
@@ -771,12 +779,23 @@ html, body, .page, .page main {
 }
 </style>
 
-
-<link rel="icon" type="image/png" sizes="192x192" href="./mandala-bienvenida-192-final.png?v=final1">
-<link rel="icon" type="image/png" sizes="512x512" href="./mandala-bienvenida-512-final.png?v=final1">
-<link rel="apple-touch-icon" sizes="192x192" href="./mandala-bienvenida-192-final.png?v=final1">
-<link rel="apple-touch-icon" sizes="512x512" href="./mandala-bienvenida-512-final.png?v=final1">
-<link rel="manifest" href="./manifest.webmanifest?v=final1">
+<style>
+/* Ajuste final exclusivo página 7: composición centrada y equilibrada */
+.page[data-index="7"] main{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;box-sizing:border-box!important;overflow-y:auto!important;overflow-x:hidden!important;padding:14px 14px 18px!important;gap:0!important;}
+.page[data-index="7"] .restaurant-photo{flex:0 0 auto!important;width:min(100%,760px)!important;height:clamp(180px,32dvh,340px)!important;margin:0 auto 14px!important;}
+.page[data-index="7"] h1{width:100%!important;text-align:center!important;margin:0 auto 10px!important;font-size:clamp(30px,7vw,46px)!important;}
+.page[data-index="7"] .copy{width:min(100%,760px)!important;box-sizing:border-box!important;text-align:center!important;margin:0 auto!important;padding:0 4px!important;font-size:clamp(17px,4.2vw,21px)!important;line-height:1.4!important;}
+@media(max-height:700px){.page[data-index="7"] main{justify-content:flex-start!important}.page[data-index="7"] .restaurant-photo{height:27dvh!important}}
+</style><style id="ajuste-final-pagina-7-como-pagina-8">
+/* La página 7 recupera la composición y proporción de la página 8. */
+.page[data-index="7"] main{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;overflow-y:auto!important;overflow-x:hidden!important;box-sizing:border-box!important;padding:18px 18px 84px!important;gap:0!important;}
+.page[data-index="7"] .restaurant-photo{flex:0 1 auto!important;width:min(100%,760px)!important;height:min(55dvh,520px)!important;min-height:0!important;margin:0!important;border-radius:24px!important;}
+.page[data-index="7"] .restaurant-photo img{width:100%!important;height:100%!important;object-fit:cover!important;}
+.page[data-index="7"] h1{flex:0 0 auto!important;width:auto!important;margin:18px 0 10px!important;font-size:clamp(30px,6vw,52px)!important;}
+.page[data-index="7"] .copy{flex:0 0 auto!important;width:auto!important;max-width:780px!important;margin:0!important;padding:0!important;font-size:clamp(16px,3.4vw,22px)!important;line-height:1.42!important;}
+.page[data-index="7"] nav{position:absolute!important;bottom:0!important;left:0!important;right:0!important;height:72px!important;min-height:0!important;}
+@media(max-height:760px){.page[data-index="7"] .restaurant-photo{height:min(43dvh,430px)!important}.page[data-index="7"] main{justify-content:flex-start!important}}
+</style>
 </head>
 <body>
 <div class="deck">
