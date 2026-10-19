@@ -1,0 +1,25 @@
+{
+  "id": "/mandala-manuales/bienvenida/gerencia.html",
+  "name": "Mandala Group · Gerencia de Bienvenida",
+  "short_name": "Gerencia Mandala",
+  "description": "Acceso de Gerencia para enviar bienvenidas personalizadas a trabajadores de Mandala Group.",
+  "start_url": "/mandala-manuales/bienvenida/gerencia.html",
+  "scope": "/mandala-manuales/bienvenida/",
+  "display": "standalone",
+  "background_color": "#f6f1e7",
+  "theme_color": "#123f2e",
+  "icons": [
+    {
+      "src": "gerencia-icon-mandala-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "gerencia-icon-mandala-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
